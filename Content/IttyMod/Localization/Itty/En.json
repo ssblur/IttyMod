@@ -1,0 +1,34 @@
+{
+  "Person": {
+    "Positive": [
+      "lmao look at this guy! hanging with {0}",
+      "With the absolute legend @{0}{1}",
+      "Love u {0}",
+      "Wouldn't miss this for the world @{0}{1}",
+      "#chillin #ittyfun #bitaboutit @{0}{1}",
+      "Have you guys met {0}? #besties",
+      "I love {0}'s new outfit!",
+      "@{0}{1} <3 #goodvibes",
+      "#raturday with {0}! <3"
+    ],
+    "Negative": [
+      "ugh can't believe I have to be here with {0}. wish I could go home",
+      "lmao who let {0} in here",
+      "{0} thinks they can hang out with me?! OMFGGGGGGGG ew",
+      "{0} and I are enemies now",
+      "Cannot stand {0}'s face. Do you think they own any mirrors?",
+      "Honestly don't know how {0} gets out of bed in the morning.",
+      "@{0}{1} is a 100% genuine gremlin"
+    ],
+    "Neutral": [
+      "chilling with {0}",
+      "Anyone know {0}? Been hangin, they seem aight",
+      "Thinking about hanging out with {0} more, what do y'all think?",
+      "@{0}{1}, do you have an account on here?",
+      "@{0}{1} thanks for the follow!",
+      "has anyone seen {0} lately?",
+      "I heard {0} is looking for new chairs for their dining room, if anyone has any suggestions.",
+      "I ran into {0} today, it feels like it's been longer than it has"
+    ]
+  }
+}

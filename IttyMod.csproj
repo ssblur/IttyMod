@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="TinyLifeApi" Version="0.16.0" />
+
+        <PackageReference Include="ExtremelySimpleLogger" Version="1.2.3" />
+        <PackageReference Include="MLEM.Data" Version="5.0.0" />
+        <PackageReference Include="MLEM.Extended" Version="5.0.0" />
+        <PackageReference Include="MLEM.Startup" Version="5.0.0" />
+        <PackageReference Include="MonoGame.Extended" Version="3.8.0" />
+        <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="./Content/**">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
+    </ItemGroup>
+</Project>
