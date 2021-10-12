@@ -1,8 +1,15 @@
+using System;
+using TinyLife;
+using TinyLife.Actions;
+using TinyLife.Emotions;
+using TinyLife.Objects;
+
 namespace IttyMod.Actions
 {
     public class PersonBitAction : BitAction
     {
-        public override string BitAboutIt()
+        public PersonBitAction(ActionType type, ActionInfo info) : base(type, info) { }
+        protected override string BitAboutIt()
         {
             Person person = Info.GetActionObject<Person>();
             Person owner = this.Info.Person;
