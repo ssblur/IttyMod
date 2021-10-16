@@ -9,7 +9,15 @@
       "Have you guys met {0}? #besties",
       "I love {0}'s new outfit!",
       "@{0}{1} <3 #goodvibes",
-      "#raturday with {0}! <3"
+      "#raturday with {0}! <3",
+      "Here with the one and only {0} {1} and loving it!",
+      "Nobody can ruin the mood with {0} around",
+      "honestly I would die for @{0}{1}. I would *litrelly* die",
+      "@{0}{1} <3",
+      "@{0}{1} looking cute today ngl",
+      "I wish I had {0}'s hair",
+      "{0} has always been there for me when I needed it most #thebest #therewhenyouneedit",
+      "remember when I got red shaved ice on my shirt but {0} had another one in the car for me? honestly I'm #blessed to have friends like these"
     ],
     "Negative": [
       "ugh can't believe I have to be here with {0}. wish I could go home",
@@ -18,7 +26,13 @@
       "{0} and I are enemies now",
       "Cannot stand {0}'s face. Do you think they own any mirrors?",
       "Honestly don't know how {0} gets out of bed in the morning.",
-      "@{0}{1} is a 100% genuine gremlin"
+      "@{0}{1} is a 100% genuine gremlin",
+      "{0} is a snake",
+      "can't trust {0}. I said \"I like your hair\" and they said \"Thanks\". like ummmm not even \"I like yours more\"? {0} you don't even have nice hair smh",
+      "I wonder how {0} sleeps at night",
+      "do you think {0}'s mom is nice or does the personality run in the family",
+      "wow I'm in a negative mood rn, running into {0} didn't help but I'm sorry to all the followers getting bad vibes today",
+      "@{0}{1} you win ok, can't deal with you today"
     ],
     "Neutral": [
       "chilling with {0}",
@@ -28,7 +42,24 @@
       "@{0}{1} thanks for the follow!",
       "has anyone seen {0} lately?",
       "I heard {0} is looking for new chairs for their dining room, if anyone has any suggestions.",
-      "I ran into {0} today, it feels like it's been longer than it has"
+      "I ran into {0} today, it feels like it's been longer than it has",
+      "@{0}{1} is like milk",
+      "{0} was there for me when I didn't really need it, but I appreciate the thought"
+    ]
+  },
+  "General": {
+    "Positive": [
+      "good vibes only today",
+      "loving the weather!",
+      "honestly this kind of day reminds me of when I was like 5 and I would play around my grandparents' house.",
+      "anyone else feeling #blessed today?",
+      "new day, new reason to love my life!!! <3"
+    ],
+    "Negative": [
+      "not feeling too hot #badvibes"
+    ],
+    "Neutral": [
+      "hey guys does anybody know of any good burger places?"
     ]
   }
 }
