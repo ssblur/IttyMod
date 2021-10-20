@@ -61,7 +61,7 @@ namespace IttyMod {
 
         public override void AddGameContent(GameImpl game) {
             // People can Bit about other people.
-            ActionType.Register(new ActionType.TypeSettings("IttyMod.Bit", ObjectCategory.People, typeof(Actions.BitAction)) {
+            ActionType.Register(new ActionType.TypeSettings("IttyMod.BitPerson", ObjectCategory.People, typeof(Actions.PersonBitAction)) {
                 CanExecute = (info, automatic) => {
                     return ActionType.CanExecuteResult.Valid;
                 },
@@ -69,6 +69,18 @@ namespace IttyMod {
                     CanDoRandomly = true,
                     SolvedNeeds = new[] {NeedType.Entertainment, NeedType.Social},
                     PassivePriority = p => 10
+                },
+                Texture = IttyMod.uiTextures[1, 0]
+            });
+
+            ActionType.Register(new ActionType.TypeSettings("IttyMod.Bit", ObjectCategory.Self, typeof(Actions.GeneralBitAction)) {
+                CanExecute = (info, automatic) => {
+                    return ActionType.CanExecuteResult.Valid;
+                },
+                Ai = {
+                    CanDoRandomly = true,
+                    SolvedNeeds = new[] {NeedType.Entertainment, NeedType.Social},
+                    PassivePriority = p => 5
                 },
                 Texture = IttyMod.uiTextures[1, 0]
             });
