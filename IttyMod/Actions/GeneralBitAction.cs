@@ -13,18 +13,17 @@ namespace IttyMod.Actions
         {
             Person owner = this.Info.Person;
 
-            IttyMod.BitDisposition bitDisposition = (
-                owner.Emotion == EmotionType.Happy
-                || owner.Emotion == EmotionType.Creative
-                || owner.Emotion == EmotionType.Energetic
-                ) ? IttyMod.BitDisposition.POSITIVE : (
-                    (
-                    owner.Emotion == EmotionType.Angry
-                    || owner.Emotion == EmotionType.Bored
-                    || owner.Emotion == EmotionType.Embarrassed
-                    || owner.Emotion == EmotionType.Sad
-                    ) ? IttyMod.BitDisposition.NEGATIVE : IttyMod.BitDisposition.NEUTRAL
-                );
+            IttyMod.BitDisposition bitDisposition;
+            switch(owner.Emotion.Category) {
+                case(EmotionType.TypeCategory.Negative): 
+                    bitDisposition = IttyMod.BitDisposition.NEGATIVE;
+                    break;
+                case(EmotionType.TypeCategory.Positive):
+                    bitDisposition = IttyMod.BitDisposition.POSITIVE;
+                    break;
+                default:
+                    bitDisposition = IttyMod.BitDisposition.NEUTRAL;
+            }
 
             string userTag = String.Format("@{0}{1}", owner.FirstName, owner.LastName);
             string bit = String.Format("{0}: {1}", userTag, IttyMod.LocalizedBit("General", bitDisposition));

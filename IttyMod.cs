@@ -43,6 +43,7 @@ namespace IttyMod {
                 if(LoadedLang == TinyLife.Options.Instance.Language)
                     return _InternalLang;
                 LoadedLang = TinyLife.Options.Instance.Language;
+                
                 try 
                 { 
                     return _InternalLang = Manager.Load<JObject>("Localization/Itty/" + TinyLife.Options.Instance.Language);
@@ -73,6 +74,7 @@ namespace IttyMod {
                 Texture = IttyMod.uiTextures[1, 0]
             });
 
+            // People can just post randomly.
             ActionType.Register(new ActionType.TypeSettings("IttyMod.Bit", ObjectCategory.Self, typeof(Actions.GeneralBitAction)) {
                 CanExecute = (info, automatic) => {
                     return ActionType.CanExecuteResult.Valid;
