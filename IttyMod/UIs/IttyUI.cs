@@ -61,7 +61,6 @@ namespace IttyMod.UIs
                 Paragraph text = new Paragraph(Anchor.AutoRight, 130, bit.content);
                 panel.AddChild(text, 0);
 
-                IttyMod.Logger.Info(bit.creator);
                 if(bit.creator != null){
                     // Player portrait here eventually.
                     
