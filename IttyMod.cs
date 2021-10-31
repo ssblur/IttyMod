@@ -69,7 +69,6 @@ namespace IttyMod {
                 },
                 Ai = {
                     CanDoRandomly = true,
-                    SolvedNeeds = new[] {NeedType.Entertainment, NeedType.Social},
                     PassivePriority = p => 20
                 },
                 Texture = IttyMod.uiTextures[1, 0]
@@ -82,7 +81,6 @@ namespace IttyMod {
                 },
                 Ai = {
                     CanDoRandomly = true,
-                    SolvedNeeds = new[] {NeedType.Entertainment, NeedType.Social},
                     PassivePriority = p => 0.8f
                 },
                 Texture = IttyMod.uiTextures[1, 0]
