@@ -65,6 +65,7 @@ namespace IttyMod.UIs
                 Paragraph text = new Paragraph(Anchor.AutoRight, 130, bit.content);
                 panel.AddChild(text, 0);
 
+                // Split tag groups into columns for formatting.
                 Group group = new Group(Anchor.AutoCenter, new Vec2(160, 0), true);
                 Group leftColumn = new Group(Anchor.TopLeft, new Vec2(75, 0), true);
                 Group rightColumn = new Group(Anchor.TopRight, new Vec2(75, 0), true);
@@ -73,21 +74,21 @@ namespace IttyMod.UIs
                     // Image image = new Image(Anchor.TopLeft, new Vec2(20, 20), IttyMod.uiTextures[1, 0]);
                     panel.AddChild(image);
 
-                    Paragraph tag = new Paragraph(Anchor.AutoLeft, 50, String.Format("@{0}{1}", bit.creator.FirstName, bit.creator.LastName));
+                    Paragraph tag = new Paragraph(Anchor.AutoLeft, 75, String.Format("@{0}{1}", bit.creator.FirstName, bit.creator.LastName));
                     tag.TextColor = new Microsoft.Xna.Framework.Color(150, 150, 150);
                     leftColumn.AddChild(tag);
                 } else {
                     Image image = new Image(Anchor.CenterLeft, new Vec2(20, 20), IttyMod.uiTextures[1, 0]);
                     panel.AddChild(image);
 
-                    Paragraph tag = new Paragraph(Anchor.AutoLeft, 50, String.Format("Sponsored", bit.creator.FirstName, bit.creator.LastName));
+                    Paragraph tag = new Paragraph(Anchor.AutoLeft, 75, String.Format("Sponsored", bit.creator.FirstName, bit.creator.LastName));
                     tag.TextColor = new Microsoft.Xna.Framework.Color(150, 150, 50);
                     leftColumn.AddChild(tag);
                 }
 
                 foreach(MapObject involved in bit.involved) {
                     if(involved is Person person) {
-                        Paragraph tag = new Paragraph(Anchor.AutoRight, 50, String.Format("+@{0}{1}", person.FirstName, person.LastName));
+                        Paragraph tag = new Paragraph(Anchor.AutoRight, 75, String.Format("+@{0}{1}", person.FirstName, person.LastName));
                         tag.Alignment = MLEM.Formatting.TextAlignment.Right;
                         tag.TextColor = new Microsoft.Xna.Framework.Color(150, 150, 250);
                         rightColumn.AddChild(tag);
