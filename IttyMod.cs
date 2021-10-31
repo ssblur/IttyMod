@@ -80,7 +80,6 @@ namespace IttyMod {
                     TimeSpan? time = info.Person.GetTimeSpan("randomBitTimer");
                     if(time == null || time < TinyLife.GameImpl.Instance.CurrentTime)
                         return ActionType.CanExecuteResult.Valid;
-                    info.Person.SetTimeSpan("randomBitTimer", TinyLife.GameImpl.Instance.CurrentTime + new TimeSpan(0, 30, 0));
                     return ActionType.CanExecuteResult.WaitingRequired;
                 },
                 Ai = {
