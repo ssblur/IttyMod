@@ -17,6 +17,7 @@ using TinyLife.Objects;
 using TinyLife.Utilities;
 using Newtonsoft.Json.Linq;
 using Microsoft.Xna.Framework.Content;
+using IttyMod.UIs;
 
 namespace IttyMod {
     public class IttyMod : Mod {
@@ -69,7 +70,7 @@ namespace IttyMod {
                 Ai = {
                     CanDoRandomly = true,
                     SolvedNeeds = new[] {NeedType.Entertainment, NeedType.Social},
-                    PassivePriority = p => 10
+                    PassivePriority = p => 20
                 },
                 Texture = IttyMod.uiTextures[1, 0]
             });
@@ -82,10 +83,12 @@ namespace IttyMod {
                 Ai = {
                     CanDoRandomly = true,
                     SolvedNeeds = new[] {NeedType.Entertainment, NeedType.Social},
-                    PassivePriority = p => 5
+                    PassivePriority = p => 0.5f
                 },
                 Texture = IttyMod.uiTextures[1, 0]
             });
+            
+            TinyLife.GameImpl.Instance.UiSystem.OnRootAdded += IttyUI.RootHandler;
         }
 
         public override void Initialize(Logger logger, RawContentManager content, RuntimeTexturePacker texturePacker) {
@@ -120,7 +123,7 @@ namespace IttyMod {
                 string[] array = Lang.SelectToken(key + "." + polarity)?.ToObject<string[]>();
 
                 if(array == null) return "honestly at a loss for words...";
-
+                
                 return array[Generator.Next(0, array.Length)];
             }
 

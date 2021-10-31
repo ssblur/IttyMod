@@ -9,7 +9,7 @@ namespace IttyMod.Actions
     public class PersonBitAction : BitAction
     {
         public PersonBitAction(ActionType type, ActionInfo info) : base(type, info) { }
-        protected override string BitAboutIt()
+        protected override Bit BitAboutIt()
         {
             Person person = Info.GetActionObject<Person>();
             Person owner = this.Info.Person;
@@ -23,9 +23,8 @@ namespace IttyMod.Actions
             else if (friendship > 10 && random.Next(10) < 8)
                 bitDisposition = IttyMod.BitDisposition.NEGATIVE;
 
-            string userTag = String.Format("@{0}{1}", owner.FirstName, owner.LastName);
-            string bit = String.Format("{0}: {1}", userTag, IttyMod.LocalizedBit("Person", bitDisposition));
-            return String.Format(bit, person.FirstName, person.LastName);
+            string bit = String.Format(IttyMod.LocalizedBit("Person", bitDisposition), person.FirstName, person.LastName);
+            return new Bit(bit, this.Person, person);
         }
     }
 }

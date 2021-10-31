@@ -7,6 +7,7 @@ using TinyLife.Emotions;
 using TinyLife.Objects;
 using TinyLife.Uis;
 using Action = TinyLife.Actions.Action;
+using IttyMod.UIs;
 
 namespace IttyMod.Actions {
     public abstract class BitAction : MultiAction {
@@ -43,8 +44,8 @@ namespace IttyMod.Actions {
         }
 
         protected override void AndThenOnCompleted(CompletionType type) {
-            string bit = BitAboutIt();
-            Notifications.Add(IttyMod.uiTextures[0, 0], bit);
+            Bit bit = BitAboutIt();
+            BitManager.INSTANCE.AddBit(bit);
 
             base.AndThenOnCompleted(type);
         }
@@ -53,6 +54,6 @@ namespace IttyMod.Actions {
         ///     What should the Person performing this action Bit about?
         /// </summary>
         /// <returns>The string to post to Itty</returns>
-        protected abstract string BitAboutIt();
+        protected abstract Bit BitAboutIt();
     }
 }
