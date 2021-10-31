@@ -68,7 +68,8 @@ namespace IttyMod.UIs
                 if(bit.creator != null){
                     // Player portrait here eventually.
                     
-                    Image image = new Image(Anchor.TopLeft, new Vec2(20, 20), IttyMod.uiTextures[1, 0]);
+                    Image image = new Image(Anchor.TopLeft, new Vec2(20, 20), new TextureRegion(bit.creator.Portrait));
+                    // Image image = new Image(Anchor.TopLeft, new Vec2(20, 20), IttyMod.uiTextures[1, 0]);
                     panel.AddChild(image);
 
                     Paragraph tag = new Paragraph(Anchor.AutoLeft, 50, String.Format("@{0}{1}", bit.creator.FirstName, bit.creator.LastName));
