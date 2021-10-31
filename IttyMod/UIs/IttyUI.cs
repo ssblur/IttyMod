@@ -65,33 +65,37 @@ namespace IttyMod.UIs
                 Paragraph text = new Paragraph(Anchor.AutoRight, 130, bit.content);
                 panel.AddChild(text, 0);
 
+                Group group = new Group(Anchor.AutoCenter, new Vec2(160, 0), true);
+                Group leftColumn = new Group(Anchor.TopLeft, new Vec2(75, 0), true);
+                Group rightColumn = new Group(Anchor.TopRight, new Vec2(75, 0), true);
                 if(bit.creator != null){
-                    // Player portrait here eventually.
-                    
                     Image image = new Image(Anchor.TopLeft, new Vec2(20, 20), new TextureRegion(bit.creator.Portrait));
                     // Image image = new Image(Anchor.TopLeft, new Vec2(20, 20), IttyMod.uiTextures[1, 0]);
                     panel.AddChild(image);
 
                     Paragraph tag = new Paragraph(Anchor.AutoLeft, 50, String.Format("@{0}{1}", bit.creator.FirstName, bit.creator.LastName));
                     tag.TextColor = new Microsoft.Xna.Framework.Color(150, 150, 150);
-                    panel.AddChild(tag);
+                    leftColumn.AddChild(tag);
                 } else {
                     Image image = new Image(Anchor.CenterLeft, new Vec2(20, 20), IttyMod.uiTextures[1, 0]);
                     panel.AddChild(image);
 
                     Paragraph tag = new Paragraph(Anchor.AutoLeft, 50, String.Format("Sponsored", bit.creator.FirstName, bit.creator.LastName));
                     tag.TextColor = new Microsoft.Xna.Framework.Color(150, 150, 50);
-                    panel.AddChild(tag);
+                    leftColumn.AddChild(tag);
                 }
 
                 foreach(MapObject involved in bit.involved) {
-                    if(involved is Person) {
-                        Paragraph tag = new Paragraph(Anchor.AutoRight, 50, String.Format("+@{0}{1}", ((Person) involved).FirstName, ((Person) involved).LastName));
+                    if(involved is Person person) {
+                        Paragraph tag = new Paragraph(Anchor.AutoRight, 50, String.Format("+@{0}{1}", person.FirstName, person.LastName));
                         tag.Alignment = MLEM.Formatting.TextAlignment.Right;
                         tag.TextColor = new Microsoft.Xna.Framework.Color(150, 150, 250);
-                        panel.AddChild(tag);
+                        rightColumn.AddChild(tag);
                     }
                 }
+                group.AddChild(leftColumn);
+                group.AddChild(rightColumn);
+                panel.AddChild(group);
 
                 bitContainer.AddChild(panel, 0);
 
