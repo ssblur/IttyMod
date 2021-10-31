@@ -77,11 +77,15 @@ namespace IttyMod {
             // People can just post randomly.
             ActionType.Register(new ActionType.TypeSettings("IttyMod.Bit", ObjectCategory.Self, typeof(Actions.GeneralBitAction)) {
                 CanExecute = (info, automatic) => {
-                    return ActionType.CanExecuteResult.Valid;
+                    TimeSpan? time = info.Person.GetTimeSpan("randomBitTimer");
+                    if(time == null || time < TinyLife.GameImpl.Instance.CurrentTime)
+                        return ActionType.CanExecuteResult.Valid;
+                    info.Person.SetTimeSpan("randomBitTimer", TinyLife.GameImpl.Instance.CurrentTime + new TimeSpan(0, 30, 0));
+                    return ActionType.CanExecuteResult.WaitingRequired;
                 },
                 Ai = {
                     CanDoRandomly = true,
-                    PassivePriority = p => 0.8f
+                    PassivePriority = p => 10
                 },
                 Texture = IttyMod.uiTextures[1, 0]
             });
