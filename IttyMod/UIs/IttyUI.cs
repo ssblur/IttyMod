@@ -28,8 +28,8 @@ namespace IttyMod.UIs
         class IttyInterface : Element {
             Button closeButton;
             Panel basePanel;
-            Paragraph title;
             Panel bitContainer;
+            Image icon;
             Queue<Element> children = new Queue<Element>();
 
             public IttyInterface() : base(Anchor.Center, new Vec2(204, 128)) {
@@ -38,11 +38,15 @@ namespace IttyMod.UIs
                 basePanel = new Panel(Anchor.TopLeft, Size, new Vec2(0, 0), false, false);
                 AddChild(basePanel);
 
-                title = new Paragraph(Anchor.AutoCenter, 24, "Itty!");
-                title.TextScaleMultiplier = 2;
-                basePanel.AddChild(title);
+                icon = new Image(Anchor.TopLeft, new Vec2(16, 16), IttyMod.uiTextures[0, 0]);
+                icon.Padding = new MLEM.Misc.Padding(2, 2);
+                basePanel.AddChild(icon);
 
-                bitContainer = new Panel(Anchor.AutoCenter, new Vec2(200, 102), new Vec2(0, 0), false, true, new Microsoft.Xna.Framework.Point(8, 12));
+                // title = new Paragraph(Anchor.TopCenter, 24, "Itty!");
+                // title.TextScaleMultiplier = 2;
+                // basePanel.AddChild(title);
+
+                bitContainer = new Panel(Anchor.BottomCenter, new Vec2(200, 102), new Vec2(0, 0), false, true, new Microsoft.Xna.Framework.Point(8, 12));
                 basePanel.AddChild(bitContainer);
 
                 closeButton = new Button(Anchor.TopRight, new Vec2(14, 14), "X");
