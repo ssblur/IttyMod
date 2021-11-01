@@ -32,7 +32,9 @@
       "I wonder how {0} sleeps at night",
       "do you think {0}'s mom is nice or does the personality run in the family",
       "wow I'm in a negative mood rn, running into {0} didn't help but I'm sorry to all the followers getting bad vibes today",
-      "@{0}{1} you win ok, can't deal with you today"
+      "@{0}{1} you win ok, can't deal with you today",
+      "{0} said my hair looked 'flat' I legitimately might cry",
+      "I'm not saying that I hate {0} but if I had to choose between saving them and catching an episode of Long View 99 I might have some serious pause"
     ],
     "Neutral": [
       "chilling with {0}",
@@ -44,7 +46,9 @@
       "I heard {0} is looking for new chairs for their dining room, if anyone has any suggestions.",
       "I ran into {0} today, it feels like it's been longer than it has",
       "@{0}{1} is like milk",
-      "{0} was there for me when I didn't really need it, but I appreciate the thought"
+      "{0} was there for me when I didn't really need it, but I appreciate the thought",
+      "{0} is literally",
+      "did y'all know {0} still lives in town? I haven't seen them in forever"
     ]
   },
   "General": {
