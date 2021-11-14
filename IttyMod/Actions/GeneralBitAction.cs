@@ -20,6 +20,11 @@ namespace IttyMod.Actions
                 EmotionType.TypeCategory.Positive => bitDisposition = IttyMod.BitDisposition.POSITIVE,
                 _ => IttyMod.BitDisposition.NEUTRAL,
             };
+
+            // Most of the time, we want Neutral bits, because there are a lot of them and people are frequently in moods.
+            if(random.Next(50) > 10) {
+                bitDisposition = IttyMod.BitDisposition.NEUTRAL;
+            }
             string bit = IttyMod.LocalizedBit("General", bitDisposition);
             return new Bit(bit, this.Person);
         }

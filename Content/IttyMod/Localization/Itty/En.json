@@ -17,7 +17,9 @@
       "@{0}{1} looking cute today ngl",
       "I wish I had {0}'s hair",
       "{0} has always been there for me when I needed it most #thebest #therewhenyouneedit",
-      "remember when I got red shaved ice on my shirt but {0} had another one in the car for me? honestly I'm #blessed to have friends like these"
+      "remember when I got red shaved ice on my shirt but {0} had another one in the car for me? honestly I'm #blessed to have friends like these",
+      "{0} has always been a friend every since they stopped being my enemy",
+      "@{0}{1} mind if I drop by sometime? miss hangin out"
     ],
     "Negative": [
       "ugh can't believe I have to be here with {0}. wish I could go home",
@@ -34,7 +36,12 @@
       "wow I'm in a negative mood rn, running into {0} didn't help but I'm sorry to all the followers getting bad vibes today",
       "@{0}{1} you win ok, can't deal with you today",
       "{0} said my hair looked 'flat' I legitimately might cry",
-      "I'm not saying that I hate {0} but if I had to choose between saving them and catching an episode of Long View 99 I might have some serious pause"
+      "I'm not saying that I hate {0} but if I had to choose between saving them and catching an episode of Long View 99 I might have some serious pause",
+      "I'd sell {0} for a tic tac",
+      "{0} looks like a peanut",
+      "{0}, wonder why nobody likes you? that's because you're an awful human being, honey",
+      "no offense, {0}, but I don't want to deal with anyone who has been soiled by proximity to you",
+      "{0} is skulking around the store, just buy what you need and leave"
     ],
     "Neutral": [
       "chilling with {0}",
@@ -48,7 +55,10 @@
       "@{0}{1} is like milk",
       "{0} was there for me when I didn't really need it, but I appreciate the thought",
       "{0} is literally",
-      "did y'all know {0} still lives in town? I haven't seen them in forever"
+      "did y'all know {0} still lives in town? I haven't seen them in forever",
+      "saw {0} at the store the other day buyin dang GRAPES",
+      "@{0}{1} do you like the little plastic barrels of fruit juice they sell for like 2 year olds? I'm wild about those little guys",
+      "{0} just said my mom was a camel. How dare you."
     ]
   },
   "General": {
@@ -66,7 +76,17 @@
       "Wish every day were like today",
       "<3",
       "loved the new season of Long View 99. Jack Pierogi is hilarious",
-      "Got like 4 wins in a row in online Foe Frenzy. Might buy a scratch-off."
+      "Got like 4 wins in a row in online Foe Frenzy. Might buy a scratch-off.",
+      "just started watching ItsHuli on switch. great streamer",
+      "Playing Tennis on the Pico Us",
+      "Got mad pics of this cat Rhea, she is the sweetest, most polite little lady",
+      "Met this lovely person at work the other day, can't remember their name but if you bought like 400 bananas for your smoothie shop just know you're the best",
+      "Good feels are in season",
+      "love all 4 of my fans. would die for you",
+      "remembering when I used to roast marshmallows by the campfire as a kid",
+      "all my besties on this site. ily",
+      "Got some new PJs, so cozy",
+      "Love when a cat sits on your lap and just purrs. so sweet <3"
     ],
     "Negative": [
       "not feeling too hot #badvibes",
@@ -87,7 +107,16 @@
       "trying out the new PICO Flip Online, the PICO-64 emulation is awful honestly. like a full quarter second of input lag",
       ");",
       "some days I miss when Levar Burton did Reading Rainbow",
-      "Do people not understand that I don't work on Imaginary Inclusions anymore, I've gotten 3 requests this week to update it to 1.22"
+      "Do people not understand that I don't work on Imaginary Inclusions anymore, I've gotten 3 requests this week to update it to 1.22",
+      "oo baby do you know what that's worth? oo hell is a place on earth );",
+      "I have two chances of happiness in life: slim and none",
+      "I am inconvenient, and will not die to please anyone",
+      "Yeah baby! said nobody bc this is not good",
+      "I hate myself, I hate clover, and I hate bees",
+      "panicking again, but this time with a little more flavor",
+      "what is up fellow screwups",
+      "imagine programming in PHP",
+      "just found out chicken isn't vegan wtffffff I'm dying"
       ],
     "Neutral": [
       "hey guys does anybody know of any good burger places?",
@@ -100,7 +129,63 @@
       "the government's been hiding everything from us!!! it's all in the bushes, like little easter eggs",
       "Thinking about picking up yoga maybe? IDK, I think I'd look good in the pants.",
       "What ever happened to Project Boron? I wonder if that's been secretly in development for like 5 years?",
-      "Watching Bart Mart, Convenience Store Guard. Extremely solid 5/10. "
+      "Watching Bart Mart, Convenience Store Guard. Extremely solid 5/10.",
+      "one of my folks just asked if I've ever been to a \"drug party\" like sure yeah I go to parties",
+      "I'm like a warm, mildly sterile seat",
+      "why eat cheerios when a demon could do it for you",
+      "weather's ok today, I guess. not sure what else to post about",
+      "pumking bred",
+      "rebit if you",
+      "Did you know that the original name for Pac-Man was Puck-Man?",
+      "took a picture of a deer but red eye made it look like a demon. legit a little scared.",
+      "creeper? awww man.",
+      "gonna spin",
+      "just saw Shraq 2. hmm",
+      "listening to metal. copper's my fav so far",
+      "what is up mi amigos",
+      "truly these times are times",
+      "ever think something is so deep but you tell someone and they are like 'yeah of course'",
+      "I am legitimately upset when people say \"2 is the only even prime\" like that is some magic property of 2. EVEN MEANS IT'S DIVISIBLE BY 2!!! OF COURSE IT'S NOT PRIME!",
+      "trying to remember this show I watched as a kid. there is an electric child and a man with a book?",
+      "there was this game I played once, little dudes walk around a map and beat each other up. lmk if you remember",
+      "Pico Flip got the new Selig: Stinky Breath honestly so excited to get one",
+      "is getting paid to play a 4 year old's birthday party worth it?",
+      "imagine naming your kid Karen in current year",
+      "keep hearing ads for P'yanitsa on the Pico Flip. didn't they nail that game like 20 years ago on the Pico Little Gamer? why would I buy it again",
+      "seems like it'd be fun to ride a zamboni I don't even care about cleaning the ice",
+      "I miss the rusty metal toilet from my old apartment but it's nice having a suburban toilet with vinyl siding - Kim N",
+      "There's always that one trick-or-treater who complains about your fistful of browning banana slices - Kim N",
+      "dad told me he's been drinking 2-3 water bottles a day like dude you're supposed to drink the water not the bottle",
+      "apparently I was named after my grandpa. of course I am, he was born like 100 years ago",
+      "credit limit went up by $100, going to buy some grapes",
+      "I think it'd be pretty cool to fill a pool with seltzer or something. tingly feelin",
+      "Thinking about getting a pet? what do t'all think?",
+      "trying new cereals, I love chocolate but all chocolate cereal sucks I don't get it",
+      "maybe might do yoga",
+      "Thinking about leaving town for a bit, haven't had a vacation in a bit.",
+      "#newnailsnewme got em painted and feeling fab as",
+      "considering building a massive rail network for marbles and recording them",
+      "Get me in the Olympics for curling I can sweep up in front of a hockey puck.",
+      "think I might go for a walk",
+      "hey follow me and I'll bake a cheesecake or smth",
+      "I'm in me mum's car. broom broom",
+      "Makin my way downtown, walkin fast",
+      "ate toast, drank water. feeling very neutral rn",
+      "Anyone else looking for love? No? Ok",
+      "Mom got Pinball on her phone and managed to spend $100 on it. how",
+      "camels, moms, who can tell?",
+      "did you know? there are at least 40 different colors.",
+      "just found out Gianni from Super Gianni Bros' last name isn't Gianni. The movie lied to me.",
+      "LIVE AND LEARN!1!!1",
+      "#throwback to when my little cousin turned 13 and their mom convinced them \"Teenage Photoshoots\" were a thing. Crying laughing",
+      "Large Fellow X for Pico-16 is honestly one of the best games I've played. How have we not topped that game in like 20 years?",
+      "want to learn how to bake, been home a lot lately",
+      "Does anyone know if Clay Pictoshop is worth it? I don't want to pay for a year if it isn't.",
+      "Rigatoni is such a weird word.",
+      "When Dony takes over for Tony in Water Boys Detectives, that really caught me off guard. Especially when everyone acted like nothing happened.",
+      "looking to 1v1 someone in Very Fight Bros, shoot me your Pico Pal Code",
+      "4 glasses of water in today, hope that's good enough bc IDK if I can do any more",
+      "big burger colonel. mmmm big burger"
     ]
   }
 }
