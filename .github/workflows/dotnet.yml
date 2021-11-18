@@ -24,3 +24,9 @@ jobs:
       with:
         name: Release
         path: bin/Debug/*.zip
+    - name: "Release"
+      uses: "marvinpinto/action-automatic-releases@latest"
+      with:
+        prerelease: false
+        files: bin/Debug/*.zip
+      
