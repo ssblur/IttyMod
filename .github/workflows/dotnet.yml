@@ -20,9 +20,9 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: dotnet build --no-restore
+      run: ./Publish.sh
     - name: Build addon
       uses: actions/upload-artifact@v2
       with:
         name: mod
-        path: bin/Debug/net5.0/*.dll
+        path: bin/Debug/*.zip
