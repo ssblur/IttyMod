@@ -19,7 +19,7 @@ jobs:
       run: dotnet restore
     - name: Build
       run: bash Publish.sh
-    - name: Build addon
+    - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
         name: Release
