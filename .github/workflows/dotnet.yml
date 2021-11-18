@@ -22,5 +22,5 @@ jobs:
     - name: Build addon
       uses: actions/upload-artifact@v2
       with:
-        name: mod
+        name: Release
         path: bin/Debug/*.zip
