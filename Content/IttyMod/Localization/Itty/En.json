@@ -187,5 +187,22 @@
       "4 glasses of water in today, hope that's good enough bc IDK if I can do any more",
       "big burger colonel. mmmm big burger"
     ]
+  },
+  "Death": {
+    "Positive": [
+      "I will miss {0}. They were a good friend",
+      "Rest in Peace {0} {1}",
+      "Goodbye @{0}{1}, you will be missed"
+    ],
+    "Neutral": [
+      "Nobody played Despacito at {0}'s funeral",
+      "Wish I could say something about @{0}{1}, but I didn't really know them.",
+      "Itty can you remove @{0}{1}'s account, they passed away recently"
+    ],
+    "Negative": [
+      "LMAO {0} is dead",
+      "ding dong the witch is dead",
+      "sad that {0} died but at least I don't have to deal with their garbage any more"
+    ]
   }
 }
