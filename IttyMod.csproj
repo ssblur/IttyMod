@@ -1,18 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="TinyLifeApi" Version="0.17.5" />
-
-        <PackageReference Include="ExtremelySimpleLogger" Version="*" />
-        <PackageReference Include="MLEM.Data" Version="*" />
-        <PackageReference Include="MLEM.Extended" Version="*" />
-        <PackageReference Include="MLEM.Startup" Version="*" />
-        <PackageReference Include="MonoGame.Extended" Version="*" />
-        <PackageReference Include="MonoGame.Framework.DesktopGL" Version="*" />
+        <PackageReference Include="TinyLifeApi" Version="0.19.1" />
+        
+        <PackageReference Include="ExtremelySimpleLogger" Version="1.2.4" />
+        <PackageReference Include="MLEM.Data" Version="5.2.0" />
+        <PackageReference Include="MLEM.Extended" Version="5.2.0" />
+        <PackageReference Include="MLEM.Startup" Version="5.2.0" />
+        <PackageReference Include="MonoGame.Extended" Version="3.8.0" />
+        <PackageReference Include="MonoGame.Framework.DesktopGL" Version="3.8.0.1641" />
     </ItemGroup>
 
     <ItemGroup>

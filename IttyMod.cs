@@ -14,7 +14,7 @@ using TinyLife.Actions;
 using TinyLife.Emotions;
 using TinyLife.Mods;
 using TinyLife.Objects;
-using TinyLife.Utilities;
+using TinyLife.Tools;
 using Newtonsoft.Json.Linq;
 using Microsoft.Xna.Framework.Content;
 using IttyMod.UIs;
@@ -77,7 +77,7 @@ namespace IttyMod {
             // People can just post randomly.
             ActionType.Register(new ActionType.TypeSettings("IttyMod.Bit", ObjectCategory.Self, typeof(Actions.GeneralBitAction)) {
                 CanExecute = (info, automatic) => {
-                    TimeSpan? time = info.Person.GetTimeSpan("randomBitTimer");
+                    TimeSpan? time = info.Person.GetData<TimeSpan>("randomBitTimer");
                     if(time == null || time < TinyLife.GameImpl.Instance.CurrentTime)
                         return ActionType.CanExecuteResult.Valid;
                     return ActionType.CanExecuteResult.WaitingRequired;

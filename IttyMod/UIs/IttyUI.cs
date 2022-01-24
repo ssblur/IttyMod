@@ -46,7 +46,7 @@ namespace IttyMod.UIs
                 // title.TextScaleMultiplier = 2;
                 // basePanel.AddChild(title);
 
-                bitContainer = new Panel(Anchor.BottomCenter, new Vec2(200, 102), new Vec2(0, 0), false, true, new Microsoft.Xna.Framework.Point(8, 12));
+                bitContainer = new Panel(Anchor.BottomCenter, new Vec2(200, 102), new Vec2(0, 0), false, true);
                 basePanel.AddChild(bitContainer);
 
                 closeButton = new Button(Anchor.TopRight, new Vec2(14, 14), "X");
@@ -116,9 +116,18 @@ namespace IttyMod.UIs
                 CanBeMoused = !IsHidden;
             }
 
-            public override void Draw(Microsoft.Xna.Framework.GameTime time, SpriteBatch batch, float alpha, BlendState blendState, SamplerState samplerState, Microsoft.Xna.Framework.Matrix matrix)
+            public override void Draw(
+                Microsoft.Xna.Framework.GameTime time, 
+                SpriteBatch batch, 
+                float alpha, 
+                BlendState blendState, 
+                SamplerState samplerState, 
+                DepthStencilState depthStencilState, 
+                Effect effect, 
+                Microsoft.Xna.Framework.Matrix matrix
+                )
             {
-                base.Draw(time, batch, alpha, blendState, samplerState, matrix);
+                base.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, matrix);
             }
         }
 

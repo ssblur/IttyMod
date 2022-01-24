@@ -30,13 +30,12 @@ namespace IttyMod.Actions {
             
         }
 
-        protected override void AndThenUpdate(GameTime time, TimeSpan passedInGame, GameSpeed speed) {
-            base.AndThenUpdate(time, passedInGame, speed);
-
+        protected override void AndThenUpdate(GameTime time, TimeSpan passedInGame, float speedModifier) {
+            base.AndThenUpdate(time, passedInGame, speedModifier);
             this.Person.CurrentPose = pose;
 
-            this.Person.RestoreNeed(NeedType.Entertainment, 0.5F, speed);
-            this.Person.RestoreNeed(NeedType.Social, 0.1F, speed);
+            this.Person.RestoreNeed(NeedType.Entertainment, 0.5F, speedModifier);
+            this.Person.RestoreNeed(NeedType.Social, 0.1F, speedModifier);
         }
 
         protected override CompletionType AndThenIsCompleted() {
