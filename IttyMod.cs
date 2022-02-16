@@ -94,7 +94,7 @@ namespace IttyMod {
             //     Logger.Info("Test patch");
             // };
             
-            TinyLife.GameImpl.Instance.UiSystem.OnRootAdded += IttyUI.RootHandler;
+            game.UiSystem.OnRootAdded += IttyUI.RootHandler;
         }
 
         public override void Initialize(Logger logger, RawContentManager content, RuntimeTexturePacker texturePacker) {

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System;
+using System.Runtime.Serialization;
 
 namespace IttyMod {
     /// <summary>
@@ -8,22 +9,35 @@ namespace IttyMod {
     /// but there should only be one open at once.
     /// Plus, this makes it easy to access.
     /// </summary>
-    [Serializable()]
+    [DataContract()]
     class BitManager {
-        public static BitManager INSTANCE = new BitManager();
-
-        public Queue<Bit> Bits { get; private set; }
+        [DataMember()] public Queue<Bit> Bits { get; set; }
         private BitManager() {
             Bits = new Queue<Bit>();
         }
 
-        public void AddBit(Bit bit) {
-            Bits.Enqueue(bit);
-            if(Bits.Count > 64) Bits.Dequeue();
+        public static void AddBit(Bit bit) {
+            var instance = Load();
+            instance.Bits.Enqueue(bit);
+            if(instance.Bits.Count > 64) instance.Bits.Dequeue();
             OnBitPublished(bit);
+            instance.Save();
+        }
+
+        public void Save() {
+            TinyLife.GameImpl.Instance.Map.SetData("Itty.BitManager", this);
+        }
+
+        public static BitManager Load() {
+            var instance = TinyLife.GameImpl.Instance.Map.GetData<BitManager>("Itty.BitManager");
+            foreach(var bit in instance.Bits)
+                IttyMod.Logger.Info(String.Format("bit: {0}", bit.content));
+            if(instance == null)
+                return new BitManager();
+            return instance;
         }
 
         public delegate void BitPublishedHandler(Bit bit);
-        public event BitPublishedHandler OnBitPublished;
+        public static event BitPublishedHandler OnBitPublished;
     }
 }

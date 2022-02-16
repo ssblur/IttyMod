@@ -60,10 +60,10 @@ namespace IttyMod.UIs
                 bitContainer = new Panel(Anchor.AutoCenter, new Vec2(1, 1), new Vec2(0, 0), false, true);
                 group.AddChild(bitContainer);
 
-                foreach(Bit b in BitManager.INSTANCE.Bits) {
+                foreach(Bit b in BitManager.Load().Bits) {
                     AddBit(b);
                 }
-                BitManager.INSTANCE.OnBitPublished += AddBit;
+                BitManager.OnBitPublished += AddBit;
             }
 
             public void AddBit(Bit bit) {
@@ -91,7 +91,7 @@ namespace IttyMod.UIs
                     Image image = new Image(Anchor.CenterLeft, new Vec2(profileSize, profileSize), IttyMod.uiTextures[1, 0]);
                     panel.AddChild(image);
 
-                    Paragraph tag = new Paragraph(Anchor.AutoLeft, panelSize.X, String.Format("Sponsored", bit.creator.FirstName, bit.creator.LastName));
+                    Paragraph tag = new Paragraph(Anchor.AutoLeft, panelSize.X, String.Format("Sponsored"));
                     tag.TextColor = new Microsoft.Xna.Framework.Color(150, 150, 50);
                     leftColumn.AddChild(tag);
                 }

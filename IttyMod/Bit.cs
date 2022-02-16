@@ -1,42 +1,54 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using System;
+using System.Linq;
 using TinyLife.Objects;
-using GameImpl = TinyLife.GameImpl;
+using System.Runtime.Serialization;
 
 namespace IttyMod {
+
+    [DataContract()]
     public class Bit {
-        /// <summary>The creator of a Bit</summary>
-        [JsonIgnore] public Person creator {
+        #nullable enable
+        /// <summary>
+        ///     The creator of a Bit
+        ///     This may be undefined for "sponsored" bits.
+        /// </summary>
+        public Person? creator {
             get {
-                return TinyLife.GameImpl.Instance.Map.GetObject<Person>(creatorGuid);
+                return creatorGuid != null ? TinyLife.GameImpl.Instance.Map.GetObject<Person>(creatorGuid.Value) : null;
             }
         }
         /// <summary>All people and objects which are mentioned in this bit.</summary>
-        [JsonIgnore] public List<MapObject> involved {
+        public List<MapObject> involved {
             get {
                 List<MapObject> list = new List<MapObject>();
-                involvedGuids.ForEach(delegate(Guid guid){
-                    list.Add(TinyLife.GameImpl.Instance.Map.GetObject<MapObject>(guid));
-                });
+                involvedGuids.Select(guid => TinyLife.GameImpl.Instance.Map.GetObject<MapObject>(guid));
                 return list;
             }
         }
         /// <summary>The text contents of a Bit</summary>
-        public string content {private set; get;}
+        [DataMember()] public string content {private set; get;}
 
-        private Guid creatorGuid;
-        private List<Guid> involvedGuids;
-        #nullable enable
+        [DataMember()] public Guid? creatorGuid;
+        [DataMember()] public List<Guid> involvedGuids;
         public Bit(string contents, Person? creator, params MapObject[] objects) {
             content = contents;
 
-            creatorGuid = creator!.Id;
+            creatorGuid = creator != null ? creator.Id : null;
             
             involvedGuids = new List<Guid>();
-            foreach(MapObject obj in objects) {
-                involvedGuids.Add(obj.Id);
-            }
+            if(objects != null)
+                foreach(MapObject obj in objects) {
+                    involvedGuids.Add(obj.Id);
+                }
+        }
+
+        [JsonConstructor()]
+        public Bit(string content, Guid? creatorGuid, List<Guid> involvedGuids) {
+            this.content = content;
+            this.creatorGuid = creatorGuid;
+            this.involvedGuids = involvedGuids;
         }
     }
 }
