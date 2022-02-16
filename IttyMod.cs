@@ -88,6 +88,11 @@ namespace IttyMod {
                 },
                 Texture = IttyMod.uiTextures[1, 0]
             });
+
+            // Events.ActionEvent<TinyLife.Actions.SitAction> testAction = new Events.ActionEvent<TinyLife.Actions.SitAction>();
+            // testAction.AfterCompleted += (TinyLife.Actions.SitAction action, CompletionType type) => {
+            //     Logger.Info("Test patch");
+            // };
             
             TinyLife.GameImpl.Instance.UiSystem.OnRootAdded += IttyUI.RootHandler;
         }
