@@ -23,7 +23,11 @@ namespace IttyMod {
         public List<MapObject> involved {
             get {
                 List<MapObject> list = new List<MapObject>();
-                involvedGuids.Select(guid => TinyLife.GameImpl.Instance.Map.GetObject<MapObject>(guid));
+                involvedGuids.ForEach(delegate(Guid guid){
+                    MapObject? obj = TinyLife.GameImpl.Instance.Map.GetObject<MapObject>(guid);
+                    if(obj is not null)
+                        list.Add(obj);
+                });
                 return list;
             }
         }
