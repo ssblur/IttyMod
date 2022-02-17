@@ -30,8 +30,6 @@ namespace IttyMod {
 
         public static BitManager Load() {
             var instance = TinyLife.GameImpl.Instance.Map.GetData<BitManager>("Itty.BitManager");
-            foreach(var bit in instance.Bits)
-                IttyMod.Logger.Info(String.Format("bit: {0}", bit.content));
             if(instance == null)
                 return new BitManager();
             return instance;
