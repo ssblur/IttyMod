@@ -27,7 +27,7 @@ jobs:
     - name: "Release"
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
-        automatic_release_tag: latest
+        title: "Automatic Release"
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         prerelease: false
         files: bin/Debug/*.zip
