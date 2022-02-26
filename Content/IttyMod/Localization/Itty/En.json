@@ -19,7 +19,8 @@
       "{0} has always been there for me when I needed it most #thebest #therewhenyouneedit",
       "remember when I got red shaved ice on my shirt but {0} had another one in the car for me? honestly I'm #blessed to have friends like these",
       "{0} has always been a friend every since they stopped being my enemy",
-      "@{0}{1} mind if I drop by sometime? miss hangin out"
+      "@{0}{1} mind if I drop by sometime? miss hangin out",
+      "@{0}{1} seems like a hentai boy"
     ],
     "Negative": [
       "ugh can't believe I have to be here with {0}. wish I could go home",
@@ -86,7 +87,9 @@
       "remembering when I used to roast marshmallows by the campfire as a kid",
       "all my besties on this site. ily",
       "Got some new PJs, so cozy",
-      "Love when a cat sits on your lap and just purrs. so sweet <3"
+      "Love when a cat sits on your lap and just purrs. so sweet <3",
+      "finally bit the bullet and installed haha funny [peace pipe]. would recommend 0/10",
+      "just caught the new danosworks video that man can do no wrong"
     ],
     "Negative": [
       "not feeling too hot #badvibes",
@@ -117,7 +120,10 @@
       "what is up fellow screwups",
       "imagine programming in PHP",
       "just found out chicken isn't vegan wtffffff I'm dying",
-      "i lost all my potions in Makebreak... );"
+      "i lost all my potions in Makebreak... );",
+      "anyone seen my car keys?",
+      "haha funny how do you make a furnace",
+      "anyone have any spare avocado? really need some guacamole today"
       ],
     "Neutral": [
       "just watched gryphon's selig: selig in time randomizer, pretty good stuff! lots of hot dogs this episode",
@@ -189,14 +195,17 @@
       "4 glasses of water in today, hope that's good enough bc IDK if I can do any more",
       "big burger colonel. mmmm big burger",
       "can't remember if this guy's sitch.tv was at ticticbooom or ticticboooom",
-      "watching the latest aerodactyl stream, that lil mushroom can go"
+      "watching the latest aerodactyl stream, that lil mushroom can go",
+      "square",
+      "jeff"
     ]
   },
   "Death": {
     "Positive": [
       "I will miss {0}. They were a good friend",
       "Rest in Peace {0} {1}",
-      "Goodbye @{0}{1}, you will be missed"
+      "Goodbye @{0}{1}, you will be missed",
+      "{0} will forever be in my heart"
     ],
     "Neutral": [
       "Nobody played Despacito at {0}'s funeral",
@@ -206,7 +215,11 @@
     "Negative": [
       "LMAO {0} is dead",
       "ding dong the witch is dead",
-      "sad that {0} died but at least I don't have to deal with their garbage any more"
+      "sad that {0} died but at least I don't have to deal with their garbage any more",
+      "{0} tried to swim in lava"
     ]
+  },
+  "Sponsored": {
+    "Neutral": []
   }
 }

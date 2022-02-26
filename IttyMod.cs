@@ -130,7 +130,13 @@ namespace IttyMod {
 
                 if(array == null) return "honestly at a loss for words...";
                 
-                return array[Generator.Next(0, array.Length)];
+                while(true) {
+                    string phrase = array[Generator.Next(0, array.Length)];
+
+                    // process phrase tricks until one is valid
+
+                    return phrase;
+                }
             }
 
             return "feelin gprety.. .might delete l8r..,";
