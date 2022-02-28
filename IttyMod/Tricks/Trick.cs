@@ -42,7 +42,7 @@ namespace IttyMod.Tricks {
             public static implicit operator SubstitutionOrSuccess(string s) => new SubstitutionOrSuccess(s);
             public static implicit operator SubstitutionOrSuccess(bool s) => new SubstitutionOrSuccess(s);
 
-            public override bool Equals(object? o) => false;
+            public override bool Equals(object? o) => o is SubstitutionOrSuccess ? this.Equals((SubstitutionOrSuccess) o) : false;
             public bool Equals(SubstitutionOrSuccess o) => (this.success == o.success) || (this.substitution == o.substitution);
 
             public bool Equals(bool b) => this.success != null && this.success == b;
