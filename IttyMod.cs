@@ -31,6 +31,7 @@ namespace IttyMod {
         public override TextureRegion Icon => IttyMod.uiTextures[0, 0];
 
         public static UniformTextureAtlas uiTextures;
+        public static ModInfo Info;
 
         private static RawContentManager Manager;
         private static Random Generator;
@@ -61,7 +62,7 @@ namespace IttyMod {
             }
         }
 
-        public override void AddGameContent(GameImpl game) {
+        public override void AddGameContent(GameImpl game, ModInfo info) {
             // People can Bit about other people.
             ActionType.Register(new ActionType.TypeSettings("IttyMod.BitPerson", ObjectCategory.People, typeof(Actions.PersonBitAction)) {
                 CanExecute = (info, automatic) => {
@@ -88,18 +89,14 @@ namespace IttyMod {
                 },
                 Texture = IttyMod.uiTextures[1, 0]
             });
-
-            // Events.ActionEvent<TinyLife.Actions.SitAction> testAction = new Events.ActionEvent<TinyLife.Actions.SitAction>();
-            // testAction.AfterCompleted += (TinyLife.Actions.SitAction action, CompletionType type) => {
-            //     Logger.Info("Test patch");
-            // };
             
             game.UiSystem.OnRootAdded += IttyUI.RootHandler;
         }
 
-        public override void Initialize(Logger logger, RawContentManager content, RuntimeTexturePacker texturePacker) {
+        public override void Initialize(Logger logger, RawContentManager content, RuntimeTexturePacker texturePacker, ModInfo info) {
             Logger = logger;
             Manager = content;
+            Info = info;
             Generator = new Random();
 
             texturePacker.Add(content.Load<Texture2D>("UiTextures"), r => IttyMod.uiTextures = new UniformTextureAtlas(r, 8, 8));
@@ -130,13 +127,7 @@ namespace IttyMod {
 
                 if(array == null) return "honestly at a loss for words...";
                 
-                while(true) {
-                    string phrase = array[Generator.Next(0, array.Length)];
-
-                    // process phrase tricks until one is valid
-
-                    return phrase;
-                }
+                return array[Generator.Next(0, array.Length)];
             }
 
             return "feelin gprety.. .might delete l8r..,";
