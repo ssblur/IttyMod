@@ -54,5 +54,10 @@ namespace IttyMod {
             this.creatorGuid = creatorGuid;
             this.involvedGuids = involvedGuids;
         }
+
+        public Bit Format(params object[] args) {
+            content = String.Format(content, args);
+            return this;
+        }
     }
 }

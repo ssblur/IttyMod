@@ -23,8 +23,7 @@ namespace IttyMod.Actions
             else if (friendship > 10 && random.Next(10) < 8)
                 bitDisposition = IttyMod.BitDisposition.NEGATIVE;
 
-            string bit = String.Format(IttyMod.LocalizedBit("Person", bitDisposition), person.FirstName, person.LastName);
-            return new Bit(bit, this.Person, person);
+            return Tricks.TrickRegistry.GenerateFormattedBit("Person", bitDisposition, this.Person, person);
         }
     }
 }

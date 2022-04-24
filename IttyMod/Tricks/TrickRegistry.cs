@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System;
 using System.Text.RegularExpressions;
+using TinyLife.Objects;
 
 namespace IttyMod.Tricks {
     class BitCancelledException : Exception {
@@ -19,8 +20,8 @@ namespace IttyMod.Tricks {
             private set {}
         }
 
-        public readonly static Regex _TrickMagicRegex = new Regex("/\\{\\!(.*?)\\!\\}/g");
-        public readonly static Regex _TrickStringRegex = new Regex("/(.*?)\\:(.*)/g");
+        public readonly static Regex _TrickMagicRegex = new Regex("\\{\\!(.*?)\\!\\}");
+        public readonly static Regex _TrickStringRegex = new Regex("\\{\\!(.*?)\\:(.*)\\!\\}");
         
         private Dictionary<string, Trick> Registry = new();
 
@@ -35,28 +36,46 @@ namespace IttyMod.Tricks {
         }
 
 
-        public static string Format(Bit bit) {
+        public static Bit GenerateBit(String content, Person creator, MapObject[] involved) {
             bool shouldReturn = true;
-            string value = _TrickMagicRegex.Replace(bit.content, match => {
-                return _TrickStringRegex.Replace(match.Value, stringMatch => {
-                    if(INSTANCE.Registry.ContainsKey(match.Captures[1].Value)){
-                        var result = INSTANCE.Registry[match.Captures[1].Value].parse(match.Captures[2].Value, bit.creator, bit.involved);
-                        if(result == false)
-                            throw new BitCancelledException();
-                        else if(result == true) {
-                            shouldReturn = false;
-                            return "";
+            string value = _TrickMagicRegex.Replace(content, match => {
+                if(_TrickStringRegex.IsMatch(match.Value))
+                    return _TrickStringRegex.Replace(match.Value, stringMatch => {
+                        if(INSTANCE.Registry.ContainsKey(stringMatch.Groups[1].Value)){
+                            var result = INSTANCE.Registry[stringMatch.Groups[1].Value].parse(stringMatch.Groups[2].Value, creator, involved.ToList());
+                            if(result == false)
+                                throw new BitCancelledException();
+                            else if(result == true) {
+                                shouldReturn = false;
+                                return null;
+                            } else {
+                                return result.substitution;
+                            }
                         } else {
-                            return result.substitution;
+                            return null;
                         }
-                    } else {
-                        return "";
-                    }
-                });
+                    });
+                var result = INSTANCE.Registry[match.Groups[1].Value].parse("", creator, involved.ToList());
+                if(result == false)
+                    throw new BitCancelledException();
+                else if(result == true) {
+                    shouldReturn = false;
+                    return null;
+                } else
+                    return result.substitution;
             });
 
-            if(shouldReturn) return value;
+            if(shouldReturn) return new Bit(value, creator, involved);
             else throw new BitCancelledException();
+        }
+
+        public static Bit GenerateFormattedBit(string category, IttyMod.BitDisposition disposition, Person creator, params MapObject[] involved) {
+            try {
+                string text = IttyMod.LocalizedBit(category, disposition);
+                return GenerateBit(text, creator, involved);
+            } catch(BitCancelledException) {
+                return null;
+            }
         }
     }
 }
