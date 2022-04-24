@@ -12,7 +12,7 @@ namespace IttyMod.Events {
             Random random = new Random();
             foreach(Person owner in GameImpl.Instance.Map.GetPeople()){
                 if(random.Next(10) < 3) continue; // People are quite likely to post a bit when somebody dies.
-                Relationship relationship = person.GetRelationship(owner, true);
+                Relationship relationship = owner.GetRelationship(person, true);
                 float friendship = relationship.FriendLevel;
 
                 IttyMod.BitDisposition bitDisposition = IttyMod.BitDisposition.NEUTRAL;
@@ -21,7 +21,7 @@ namespace IttyMod.Events {
                 else if (friendship <= 0)
                     bitDisposition = IttyMod.BitDisposition.NEGATIVE;
 
-                Bit bit = Tricks.TrickRegistry.GenerateFormattedBit("Death", bitDisposition, null);
+                Bit bit = Tricks.TrickRegistry.GenerateFormattedBit("Death", bitDisposition, owner, person);
                 
                 BitManager.AddBit(bit);
             }
