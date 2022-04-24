@@ -7,11 +7,6 @@ namespace IttyMod.Tricks {
     ///     A class representing a type of Bit Trick.
     /// </summary>
     public abstract class Trick {
-        /// <returns>
-        ///     A list of names which can be used to start this trick.
-        ///     Any trick magic with one of these names before the first colon will be routed to this trick.
-        /// </returns>
-        public abstract string[] getNames();
 
         #nullable enable
         /// <summary>

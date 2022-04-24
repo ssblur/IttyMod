@@ -100,6 +100,8 @@ namespace IttyMod {
             Generator = new Random();
 
             texturePacker.Add(content.Load<Texture2D>("UiTextures"), r => IttyMod.uiTextures = new UniformTextureAtlas(r, 8, 8));
+
+            Tricks.TrickRegistry.Register("test", new Tricks.TestTrick());
         }
 
         // Lets you select a specific disposition for your Bit.

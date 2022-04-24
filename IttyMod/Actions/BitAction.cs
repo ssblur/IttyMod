@@ -44,7 +44,8 @@ namespace IttyMod.Actions {
 
         protected override void AndThenOnCompleted(CompletionType type) {
             Bit bit = BitAboutIt();
-            BitManager.AddBit(bit);
+            if(bit != null)
+                BitManager.AddBit(bit);
 
             base.AndThenOnCompleted(type);
         }

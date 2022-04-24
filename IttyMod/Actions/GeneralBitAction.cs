@@ -25,8 +25,8 @@ namespace IttyMod.Actions
             if(random.Next(50) > 10) {
                 bitDisposition = IttyMod.BitDisposition.NEUTRAL;
             }
-            string bit = IttyMod.LocalizedBit("General", bitDisposition);
-            return new Bit(bit, this.Person);
+            
+            return Tricks.TrickRegistry.GenerateFormattedBit("General", bitDisposition, this.Person);
         }
     }
 }
