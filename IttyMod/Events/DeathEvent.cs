@@ -21,7 +21,7 @@ namespace IttyMod.Events {
                 else if (friendship <= 0)
                     bitDisposition = IttyMod.BitDisposition.NEGATIVE;
 
-                Bit bit = Tricks.TrickRegistry.GenerateFormattedBit("Death", bitDisposition, null).Format(person.FirstName, person.LastName);
+                Bit bit = Tricks.TrickRegistry.GenerateFormattedBit("Death", bitDisposition, null);
                 
                 BitManager.AddBit(bit);
             }

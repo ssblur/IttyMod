@@ -102,6 +102,10 @@ namespace IttyMod {
             texturePacker.Add(content.Load<Texture2D>("UiTextures"), r => IttyMod.uiTextures = new UniformTextureAtlas(r, 8, 8));
 
             Tricks.TrickRegistry.Register("test", new Tricks.TestTrick());
+            Tricks.TrickRegistry.Register("first", new Tricks.FirstNameTrick());
+            Tricks.TrickRegistry.Register("last", new Tricks.LastNameTrick());
+            Tricks.TrickRegistry.Register("@first", new Tricks.TargetFirstNameTrick());
+            Tricks.TrickRegistry.Register("@last", new Tricks.TargetLastNameTrick());
         }
 
         // Lets you select a specific disposition for your Bit.
