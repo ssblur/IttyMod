@@ -21,6 +21,7 @@ using IttyMod.UIs;
 
 namespace IttyMod {
     public class IttyMod : Mod {
+        public static readonly CanExecuteResult WaitingRequired = new CanExecuteResult("mustwait");
 
         // the logger that we can use to log info about this mod
         public static Logger Logger { get; private set; }
@@ -66,7 +67,7 @@ namespace IttyMod {
             // People can Bit about other people.
             ActionType.Register(new ActionType.TypeSettings("IttyMod.BitPerson", ObjectCategory.People, typeof(Actions.PersonBitAction)) {
                 CanExecute = (info, automatic) => {
-                    return ActionType.CanExecuteResult.Valid;
+                    return CanExecuteResult.Valid;
                 },
                 Ai = {
                     CanDoRandomly = true,
@@ -80,8 +81,8 @@ namespace IttyMod {
                 CanExecute = (info, automatic) => {
                     TimeSpan? time = info.Person.GetData<TimeSpan>("randomBitTimer");
                     if(time == null || time < TinyLife.GameImpl.Instance.CurrentTime)
-                        return ActionType.CanExecuteResult.Valid;
-                    return ActionType.CanExecuteResult.WaitingRequired;
+                        return CanExecuteResult.Valid;
+                    return WaitingRequired;
                 },
                 Ai = {
                     CanDoRandomly = true,
