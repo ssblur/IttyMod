@@ -13,7 +13,10 @@ namespace IttyMod.Actions
         protected override Bit BitAboutIt()
         {
             Person owner = this.Info.Person;
-            owner.SetData("randomBitTimer", TinyLife.GameImpl.Instance.TargetElapsedTime + new TimeSpan(0, 30, 0));
+
+            var timer = TinyLife.GameImpl.Instance.TargetElapsedTime + new TimeSpan(0, 30, 0);
+            if(owner.GetData<TimeSpan?>("randomBitTimer") == null || owner.GetData<TimeSpan?>("randomBitTimer") < timer)
+                owner.SetData("randomBitTimer", timer);
 
             IttyMod.BitDisposition bitDisposition = owner.Emotion.Category switch {
                 EmotionType.TypeCategory.Negative => IttyMod.BitDisposition.NEGATIVE,

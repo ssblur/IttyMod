@@ -107,6 +107,7 @@ namespace IttyMod {
             Tricks.TrickRegistry.Register("last", new Tricks.LastNameTrick());
             Tricks.TrickRegistry.Register("@first", new Tricks.TargetFirstNameTrick());
             Tricks.TrickRegistry.Register("@last", new Tricks.TargetLastNameTrick());
+            Tricks.TrickRegistry.Register("nopost", new Tricks.NoPostTrick());
         }
 
         // Lets you select a specific disposition for your Bit.

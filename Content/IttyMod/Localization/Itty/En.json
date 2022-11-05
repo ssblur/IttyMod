@@ -123,7 +123,8 @@
       "i lost all my potions in Makebreak... );",
       "anyone seen my car keys?",
       "haha funny how do you make a furnace",
-      "anyone have any spare avocado? really need some guacamole today"
+      "anyone have any spare avocado? really need some guacamole today",
+      "Can't believe that this site got bought out by that guy... Think I'm switching sites"
       ],
     "Neutral": [
       "just watched gryphon's selig: selig in time randomizer, pretty good stuff! lots of hot dogs this episode",
@@ -194,10 +195,12 @@
       "looking to 1v1 someone in Very Fight Bros, shoot me your Pico Pal Code",
       "4 glasses of water in today, hope that's good enough bc IDK if I can do any more",
       "big burger colonel. mmmm big burger",
-      "can't remember if this guy's sitch.tv was at ticticbooom or ticticboooom",
       "watching the latest aerodactyl stream, that lil mushroom can go",
       "square",
-      "jeff"
+      "jeff",
+      "can somebody help me budget this? my family is out of candles",
+      "google canned corn mall mart",
+      "where are all the pigeons I swear there used to be pigeons in this town."
     ]
   },
   "Death": {
@@ -205,7 +208,8 @@
       "I will miss {!@first:0!}. They were a good friend",
       "Rest in Peace {!@first:0!} {!@last:0!}",
       "Goodbye @{!@first:0!}{!@last:0!}, you will be missed",
-      "{!@first:0!} will forever be in my heart"
+      "{!@first:0!} will forever be in my heart",
+      "{!@first:0!} meant a lot to me and I'm sad to see them gone. I might not post for a while, sorry. {!nopost:1440!}"
     ],
     "Neutral": [
       "Nobody played Despacito at {!@first:0!}'s funeral",
@@ -216,7 +220,8 @@
       "LMAO {!@first:0!} is dead",
       "ding dong the witch is dead",
       "sad that {!@first:0!} died but at least I don't have to deal with their garbage any more",
-      "{!@first:0!} tried to swim in lava"
+      "{!@first:0!} tried to swim in lava",
+      "With {!@first:0!} dead, I have no reason to post for a bit. Good riddance. {!nopost:1440!}"
     ]
   },
   "Sponsored": {
