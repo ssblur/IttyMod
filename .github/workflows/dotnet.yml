@@ -19,16 +19,16 @@ jobs:
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
-      run: bash Publish.sh
+      run: dotnet cake --target Publish
     - name: Upload Artifact
       uses: actions/upload-artifact@v2
       with:
         name: Release
-        path: bin/Debug/*.zip
+        path: bin/Release/*.zip
     - name: "Release"
       uses: "marvinpinto/action-automatic-releases@latest"
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         prerelease: false
-        files: bin/Debug/*.zip
+        files: bin/Release/*.zip
       
