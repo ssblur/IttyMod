@@ -80,7 +80,7 @@ namespace IttyMod {
             ActionType.Register(new ActionType.TypeSettings("IttyMod.Bit", ObjectCategory.Self, typeof(Actions.GeneralBitAction)) {
                 CanExecute = (info, automatic) => {
                     TimeSpan? time = info.Person.GetData<TimeSpan>("randomBitTimer");
-                    if(time == null || time < TinyLife.GameImpl.Instance.CurrentTime)
+                    if(time == null || time < TinyLife.GameImpl.Instance.TargetElapsedTime)
                         return CanExecuteResult.Valid;
                     return WaitingRequired;
                 },

@@ -4,6 +4,7 @@ using MLEM.Ui;
 using MLEM.Ui.Elements;
 using MLEM.Misc;
 using MLEM.Textures;
+using MLEM.Graphics;
 using TinyLife.Objects;
 using Vec2 = Microsoft.Xna.Framework.Vector2;
 using Microsoft.Xna.Framework.Graphics;
@@ -117,18 +118,9 @@ namespace IttyMod.UIs
                 }
             }
 
-            public override void Draw(
-                Microsoft.Xna.Framework.GameTime time, 
-                SpriteBatch batch, 
-                float alpha, 
-                BlendState blendState, 
-                SamplerState samplerState, 
-                DepthStencilState depthStencilState, 
-                Effect effect, 
-                Microsoft.Xna.Framework.Matrix matrix
-                )
+            public override void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context)
             {
-                base.Draw(time, batch, alpha, blendState, samplerState, depthStencilState, effect, matrix);
+                base.Draw(time, batch, alpha, context);
             }
         }
 

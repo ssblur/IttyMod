@@ -34,8 +34,8 @@ namespace IttyMod.Actions {
             base.AndThenUpdate(time, passedInGame, speedModifier);
             this.Person.CurrentPose = pose;
 
-            this.Person.RestoreNeed(NeedType.Entertainment, 0.5F, speedModifier);
-            this.Person.RestoreNeed(NeedType.Social, 0.1F, speedModifier);
+            this.Person.RestoreNeed(NeedType.Entertainment, 0.5F, Info, speedModifier);
+            this.Person.RestoreNeed(NeedType.Social, 0.1F, Info, speedModifier);
         }
 
         protected override CompletionType AndThenIsCompleted() {

@@ -9,3 +9,5 @@ cp ./bin/Debug/net6.0/* "$HOME/.local/share/Tiny Life/Mods" -r
 dir=$(<"$HOME/.local/share/Tiny Life/GameDir")
 cd $dir
 "./Tiny Life" -v
+
+# TODO: Replace this system with the cake build system. Shouldn't be difficult, but prioritizing working.
