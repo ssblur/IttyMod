@@ -37,7 +37,6 @@ namespace IttyMod.Tricks {
 
 
         public static Bit GenerateBit(String content, Person creator, MapObject[] involved) {
-            bool shouldReturn = true;
             string value = _TrickMagicRegex.Replace(content, match => {
                 if(_TrickStringRegex.IsMatch(match.Value))
                     return _TrickStringRegex.Replace(match.Value, stringMatch => {
@@ -45,10 +44,9 @@ namespace IttyMod.Tricks {
                             var result = INSTANCE.Registry[stringMatch.Groups[1].Value].parse(stringMatch.Groups[2].Value, creator, involved.ToList());
                             if(result == false)
                                 throw new BitCancelledException();
-                            else if(result == true) {
-                                shouldReturn = false;
+                            else if(result == true)
                                 return null;
-                            } else {
+                            else {
                                 return result.substitution;
                             }
                         } else {
@@ -58,15 +56,13 @@ namespace IttyMod.Tricks {
                 var result = INSTANCE.Registry[match.Groups[1].Value].parse("", creator, involved.ToList());
                 if(result == false)
                     throw new BitCancelledException();
-                else if(result == true) {
-                    shouldReturn = false;
+                else if(result == true) 
                     return null;
-                } else
+                else
                     return result.substitution;
             });
 
-            if(shouldReturn) return new Bit(value, creator, involved);
-            else throw new BitCancelledException();
+            return new Bit(value, creator, involved);
         }
 
         public static Bit GenerateFormattedBit(string category, IttyMod.BitDisposition disposition, Person creator, params MapObject[] involved) {
