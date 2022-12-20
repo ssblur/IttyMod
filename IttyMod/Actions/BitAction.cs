@@ -39,7 +39,7 @@ namespace IttyMod.Actions {
         }
 
         protected override CompletionType AndThenIsCompleted() {
-            return this.CompleteInTime(TimeSpan.FromMinutes(1));
+            return this.CompleteIfTimeUp(TimeSpan.FromMinutes(1));
         }
 
         protected override void AndThenOnCompleted(CompletionType type) {

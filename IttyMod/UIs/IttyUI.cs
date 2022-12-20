@@ -129,7 +129,7 @@ namespace IttyMod.UIs
             root = element;
 
             if(button != null){
-                button.Dispose();
+                button.Parent.RemoveChild(button);
             }
 
             button = new IttyButton(
