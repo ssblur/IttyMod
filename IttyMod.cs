@@ -92,6 +92,10 @@ namespace IttyMod {
             });
             
             game.UiSystem.OnRootAdded += IttyUI.RootHandler;
+            TinyLife.SaveHandler.OnGameLoaded += (game, phase) => {
+                if(phase == EventPhase.Post)
+                    game.Map.OnUpdate += (_, _, _, _) => BitManager.AddReactionHook();
+            };
         }
 
         public override void Initialize(Logger logger, RawContentManager content, RuntimeTexturePacker texturePacker, ModInfo info) {

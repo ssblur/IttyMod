@@ -36,6 +36,7 @@ namespace IttyMod {
 
         [DataMember()] public Guid? creatorGuid;
         [DataMember()] public List<Guid> involvedGuids;
+        [DataMember()] public int[] reactions;
         public Bit(string contents, Person? creator, params MapObject[] objects) {
             content = contents;
 
@@ -43,16 +44,21 @@ namespace IttyMod {
             
             involvedGuids = new List<Guid>();
             if(objects != null)
-                foreach(MapObject obj in objects) {
+                foreach(MapObject obj in objects)
                     involvedGuids.Add(obj.Id);
-                }
+            reactions = new int[6];
         }
 
         [JsonConstructor()]
-        public Bit(string content, Guid? creatorGuid, List<Guid> involvedGuids) {
+        public Bit(string content, Guid? creatorGuid, List<Guid> involvedGuids, int[] reactions) {
             this.content = content;
             this.creatorGuid = creatorGuid;
             this.involvedGuids = involvedGuids;
+            if(reactions != null) {
+                Array.Resize<int>(ref reactions, 6);
+                this.reactions = reactions;
+            } else
+                this.reactions = new int[6];
         }
 
         public Bit Format(params object[] args) {

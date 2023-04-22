@@ -12,8 +12,11 @@ using TinyLife.Objects;
 namespace IttyMod.UIs.Components 
 {
     public class BitPanel : Panel {
+        Bit bit;
 
         public BitPanel(Bit bit): base(Anchor.AutoCenter, new Vec2(0.95f, 0f), new Vec2(0, 0), true) {
+            this.bit = bit;
+
             Paragraph text = new Paragraph(Anchor.AutoRight, 130, bit.content);
             this.AddChild(text, 0);
             var panelSize = new Vec2(0.475f, 1);
@@ -28,14 +31,23 @@ namespace IttyMod.UIs.Components
                 Image image = new Image(Anchor.TopLeft, new Vec2(profileSize, profileSize), new TextureRegion(bit.creator.Portrait));
                 this.AddChild(image);
 
-                Paragraph tag = new Paragraph(Anchor.AutoLeft, panelSize.X, String.Format("@{0}{1}", bit.creator.FirstName, bit.creator.LastName));
+                var pronouns = "";
+                if(bit.creator.Pronouns != null && bit.creator.Pronouns.Length > 0)
+                    pronouns = String.Format("\n({0})", bit.creator.Pronouns);
+                var nameTag = String.Format("@{0}{1}", bit.creator.FirstName, bit.creator.LastName);
+                nameTag = nameTag.Substring(0, Math.Min(13, nameTag.Length));
+                Paragraph tag = new Paragraph(
+                    Anchor.AutoLeft, 
+                    panelSize.X, 
+                    String.Format("{0}{1}", nameTag, pronouns)
+                );
                 tag.TextColor = new Microsoft.Xna.Framework.Color(150, 150, 150);
                 leftColumn.AddChild(tag);
             } else {
                 Image image = new Image(Anchor.CenterLeft, new Vec2(profileSize, profileSize), IttyMod.uiTextures[0, 0]);
                 this.AddChild(image);
 
-                Paragraph tag = new Paragraph(Anchor.AutoLeft, panelSize.X, String.Format("Sponsored"));
+                Paragraph tag = new Paragraph(Anchor.AutoLeft, panelSize.X, String.Format("Deactivated"));
                 tag.TextColor = new Microsoft.Xna.Framework.Color(150, 150, 50);
                 leftColumn.AddChild(tag);
             }
@@ -54,13 +66,65 @@ namespace IttyMod.UIs.Components
             group.AddChild(rightColumn);
             this.AddChild(group);
         }
+
+        public override void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
+            base.Draw(time, batch, alpha, context); 
+
+            var scale = 2;
+            var activeIndex = 0;
+            for(int i = 0; i < bit.reactions.Length; i++) {
+                if(bit.reactions[i] == 0) continue;
+
+                activeIndex++;
+                var tex = IttyMod.uiTextures[i, 1, 1, 1];
+                var pos = this.DisplayArea.Location;
+                pos += new Vec2(this.DisplayArea.Size.X / 2f, this.DisplayArea.Size.Y - 12);
+                pos -= new Vec2(-tex.Width * scale * (activeIndex - 2.5f), tex.Height * scale);
+
+                batch.Draw(
+                    tex, 
+                    pos,
+                    Color.White,
+                    0,
+                    Vec2.Zero,
+                    new Vec2(scale, scale),
+                    SpriteEffects.None,
+                    0
+                );
+            }  
+
+            // Always draw over all icons
+            activeIndex = 0;
+            for(int i = 0; i < bit.reactions.Length; i++) {
+                if(bit.reactions[i] == 0) continue;
+
+                activeIndex++;
+                var tex = IttyMod.uiTextures[i, 1, 1, 1];
+                var pos = this.DisplayArea.Location;
+                pos += new Vec2(this.DisplayArea.Size.X / 2f, this.DisplayArea.Size.Y - 12);
+                pos -= new Vec2(-tex.Width * scale * (activeIndex - 2.5f), tex.Height * scale);
+                pos += new Vec2(20f, 10f);
+
+                TinyLife.GameImpl.Instance.UiSystem.Style.Font.DrawString(
+                    batch,
+                    String.Format("+{0}", bit.reactions[i]),
+                    pos,
+                    Color.Black,
+                    0,
+                    Vec2.Zero,
+                    new Vec2(0.2f),
+                    SpriteEffects.None,
+                    0
+                );
+            }
+        }
     }
     
     class IttyButton : Button {
         IttyUI ui;
         public IttyButton(IttyUI ittyUi) : base(
             Anchor.TopCenter, 
-            new Vec2(16, 16), 
+            new Vec2(20, 20), 
             "", 
             "Open Itty to become sad"
         ) {
@@ -83,7 +147,7 @@ namespace IttyMod.UIs.Components
     }
 
     class LoadMoreButton : Button {
-        public LoadMoreButton(GenericCallback Callback) : base(Anchor.TopRight, new Vec2(20, 20), "Load New Bits", "") {
+        public LoadMoreButton(GenericCallback Callback) : base(Anchor.TopRight, new Vec2(20, 20), "", "") {
             Texture = new NinePatch(IttyMod.uiTextures[2, 2], 6, 6, 2, 2);
             OnPressed += Callback;
         }
@@ -134,7 +198,7 @@ namespace IttyMod.UIs.Components
             public void AddQueuedBits(Element element) {
                 basePanel.RemoveChild(loadMore);
                 loadMore = null;
-                
+
                 while(newBits.Count > 0)
                     AddBit(newBits.Dequeue());
             }

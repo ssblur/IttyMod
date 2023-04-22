@@ -12,6 +12,7 @@ namespace IttyMod {
     [DataContract()]
     class BitManager {
         [DataMember()] public Queue<Bit> Bits { get; set; }
+        static Random random = new Random();
         private BitManager() {
             Bits = new Queue<Bit>();
         }
@@ -22,6 +23,29 @@ namespace IttyMod {
             if(instance.Bits.Count > 64) instance.Bits.Dequeue();
             OnBitPublished(bit);
             instance.Save();
+        }
+
+        public void AddReaction() {
+            if(this.Bits.Count == 0) return;
+            
+            var random = new Random();
+            var item = random.NextInt64(this.Bits.Count);
+            var bit = this.Bits.ToArray()[item];
+            var reaction = random.NextInt64(bit.reactions.Length);
+            var reroll = 0;
+
+            // Reactions after the third should be rare
+            while(reaction >= 3 && reroll < 2) {
+                reroll++;
+                reaction = random.NextInt64(bit.reactions.Length);
+            }
+
+            bit.reactions[reaction] = Math.Min(9, bit.reactions[reaction] + 1);
+        }
+
+        public static void AddReactionHook() {
+            if(random.NextInt64(50) == 0) 
+                Load().AddReaction();
         }
 
         public void Save() {
