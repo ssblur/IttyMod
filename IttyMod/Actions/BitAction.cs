@@ -12,18 +12,18 @@ using IttyMod.UIs;
 namespace IttyMod.Actions {
     public abstract class BitAction : MultiAction {
         protected Random random;
-        protected Person.Pose pose;
+        protected Pose pose;
 
         public BitAction(ActionType type, ActionInfo info) : base(type, info) {
             random = new Random();
             if(random.Next(50) == 0)
-                this.pose = Person.Pose.Laying;
+                this.pose = Pose.Laying;
             else
-                this.pose = Person.Pose.Standing;
+                this.pose = Pose.Standing;
         }
 
         protected override IEnumerable<Action> CreateFirstActions() {
-            yield return ActionType.GoHere.Construct(this.Info);
+            yield return ActionType.GoHere.Construct<GoHereAction>(this.Info);
         }
 
         protected override void AndThenInitialize() {
