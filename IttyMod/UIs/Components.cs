@@ -54,7 +54,9 @@ namespace IttyMod.UIs.Components
 
             foreach(MapObject involved in bit.involved) {
                 if(involved is Person person) {
-                    Paragraph tag = new Paragraph(Anchor.AutoRight, panelSize.X, String.Format("+@{0}{1}", person.FirstName, person.LastName));
+                    var nameTag = String.Format("@{0}{1}", person.FirstName, person.LastName);
+                    nameTag = nameTag.Substring(0, Math.Min(13, nameTag.Length));
+                    Paragraph tag = new Paragraph(Anchor.AutoRight, panelSize.X, String.Format("+{0}", nameTag));
                     tag.Alignment = MLEM.Formatting.TextAlignment.Right;
                     tag.TextColor = new Microsoft.Xna.Framework.Color(150, 150, 250);
                     rightColumn.AddChild(tag);

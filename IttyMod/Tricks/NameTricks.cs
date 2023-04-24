@@ -40,4 +40,17 @@ namespace IttyMod.Tricks {
             return "";
         }
     }
+
+    class TargetTagTrick : Trick 
+    {
+        public override SubstitutionOrSuccess parse(string trick, Person owner, List<MapObject> involved)
+        {
+            int index = Int32.Parse(trick);
+            if(index < involved.Count && involved[index] is Person person) {
+                var nameTag = String.Format("@{0}{1}", person.FirstName, person.LastName);
+                return nameTag.Substring(0, Math.Min(13, nameTag.Length));
+            }
+            return "";
+        }
+    }
 }
