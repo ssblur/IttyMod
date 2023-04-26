@@ -18,6 +18,8 @@
         <Content Include="./Content/**">
             <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </Content>
-        <PackageReference Include="TweetinviAPI" Version="5.0.4" />
+        <Content Include="SteamThumbnail.png">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+        </Content>
     </ItemGroup>
 </Project>

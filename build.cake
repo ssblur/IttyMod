@@ -14,10 +14,13 @@ Task("Build").DoesForEach(GetFiles("**/*.csproj"), p => {
 
 Task("CopyToMods").IsDependentOn("Build").Does(() => {
     var dir = $"{tinyLifeDir}/Mods";
+    var dotNetRoot = GetDirectories($"bin/{config}/net*").Last();
+    
     CreateDirectory(dir);
-    var files = GetFiles($"bin/{config}/net*/**/*");
+    var files = GetFiles($"{dotNetRoot}/**/*");
+    
     // CopyFiles(files, dir, true);
-    Zip("./", $"{dir}/IttyMod.zip", files);
+    Zip($"{dotNetRoot}", $"{dir}/IttyMod.zip", files);
 });
 
 Task("Run").IsDependentOn("CopyToMods").Does(() => {
