@@ -30,7 +30,7 @@ namespace IttyMod {
         public override string Name => "Itty";
         public override string Description => "Reminds me of a certain site... \nBrings your Tiny Life online!";
         public override TextureRegion Icon => IttyMod.uiTextures[0, 0];
-        public override bool RequiresHarmony => true;
+        public override bool RequiresHarmony => false;
 
         public static UniformTextureAtlas uiTextures;
         public static ModInfo Info;
@@ -97,6 +97,14 @@ namespace IttyMod {
             TinyLife.SaveHandler.OnGameLoaded += (game, phase) => {
                 if(phase == EventPhase.Post)
                     game.Map.OnUpdate += (_, _, _, _) => BitManager.AddReactionHook();
+            };
+
+            Person.OnEventsAttachable += mapObject => {
+                if(mapObject is Person person)
+                    person.OnActionsCompleted += (action, completion, isAuxilliary) => {
+                        if(action is DieAction die) 
+                            Events.DeathEvent.OnActionsCompleted(completion, die);
+                    };
             };
         }
 

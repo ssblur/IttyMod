@@ -1,13 +1,11 @@
 using TinyLife.Actions;
 using TinyLife.Objects;
 using TinyLife;
-using HarmonyLib;
 using System;
 
 namespace IttyMod.Events {
-    [HarmonyPatch(typeof(DieAction), nameof(DieAction.OnCompleted))]
     public class DeathEvent {
-        static void Prefix(CompletionType type, DieAction __instance) {
+        public static void OnActionsCompleted(CompletionType type, DieAction __instance) {
             Person person = __instance.Person;
             Random random = new Random();
             foreach(Person owner in GameImpl.Instance.Map.GetPeople()){
