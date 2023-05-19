@@ -125,8 +125,8 @@ namespace IttyMod.UIs.Components
     class IttyButton : Button {
         IttyUI ui;
         public IttyButton(IttyUI ittyUi) : base(
-            Anchor.TopCenter, 
-            new Vec2(20, 20), 
+            Anchor.AutoLeft, 
+            new Vec2(16, 16), 
             "", 
             "Open Itty to become sad"
         ) {
