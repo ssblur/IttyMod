@@ -21,7 +21,11 @@ namespace IttyMod {
             var instance = Load();
             instance.Bits.Enqueue(bit);
             if(instance.Bits.Count > 64) instance.Bits.Dequeue();
-            OnBitPublished(bit);
+            try {
+                OnBitPublished(bit);
+            } catch (NullReferenceException e) {
+                IttyMod.Logger.Error(e);
+            }
             instance.Save();
         }
 
