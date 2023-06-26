@@ -29,6 +29,7 @@ namespace IttyMod {
         // visual data about this mod
         public override string Name => "Itty";
         public override string Description => "Reminds me of a certain site... \nBrings your Tiny Life online!";
+        public override string IssueTrackerUrl => "https://github.com/ssblur/IttyMod/issues";
         public override TextureRegion Icon => IttyMod.uiTextures[0, 0];
         public override bool RequiresHarmony => false;
 
@@ -39,6 +40,7 @@ namespace IttyMod {
         private static Random Generator;
         private static string LoadedLang;
         private static JObject _InternalLang;
+
     
 
         // A JObject which contains localized Bit arrays.

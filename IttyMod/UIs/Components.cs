@@ -8,6 +8,8 @@ using MLEM.Graphics;
 using TinyLife.Uis;
 using Vec2 = Microsoft.Xna.Framework.Vector2;
 using TinyLife.Objects;
+using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace IttyMod.UIs.Components 
 {
