@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System;
 using System.Runtime.Serialization;
+using TinyLife;
 
 namespace IttyMod {
     /// <summary>
@@ -11,6 +12,21 @@ namespace IttyMod {
     /// </summary>
     [DataContract()]
     class BitManager {
+        public static BitManager INSTANCE;
+        public static void OnSaveDataCreated(GameImpl gameImpl, SaveHandler.SaveData saveData) {
+            if(INSTANCE == null)
+                INSTANCE = new BitManager();
+            saveData.SetData("Itty.BitManager", INSTANCE);
+        }
+
+        public static void OnSaveDataLoaded(GameImpl gameImpl, SaveHandler.SaveData saveData) {
+            IttyMod.Logger.Info("Loading BitManager...");
+            var instance = saveData.GetData<BitManager>("Itty.BitManager");
+            if(instance == null)
+                instance = new BitManager();
+            INSTANCE = instance;
+        }
+
         [DataMember()] public Queue<Bit> Bits { get; set; }
         static Random random = new Random();
         private BitManager() {
@@ -18,15 +34,18 @@ namespace IttyMod {
         }
 
         public static void AddBit(Bit bit) {
-            var instance = Load();
-            instance.Bits.Enqueue(bit);
-            if(instance.Bits.Count > 64) instance.Bits.Dequeue();
+            if(INSTANCE == null) {
+                IttyMod.Logger.Warn("BitManager not instantiated. Was there an error during loading?");
+                return;
+            }
+
+            INSTANCE.Bits.Enqueue(bit);
+            if(INSTANCE.Bits.Count > 64) INSTANCE.Bits.Dequeue();
             try {
                 OnBitPublished(bit);
             } catch (NullReferenceException e) {
                 IttyMod.Logger.Error(e);
             }
-            instance.Save();
         }
 
         public void AddReaction() {
@@ -49,18 +68,7 @@ namespace IttyMod {
 
         public static void AddReactionHook() {
             if(random.NextInt64(50) == 0) 
-                Load().AddReaction();
-        }
-
-        public void Save() {
-            TinyLife.GameImpl.Instance.Map.SetData("Itty.BitManager", this);
-        }
-
-        public static BitManager Load() {
-            var instance = TinyLife.GameImpl.Instance.Map.GetData<BitManager>("Itty.BitManager");
-            if(instance == null)
-                return new BitManager();
-            return instance;
+                INSTANCE.AddReaction();
         }
 
         public delegate void BitPublishedHandler(Bit bit);

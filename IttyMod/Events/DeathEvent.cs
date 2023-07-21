@@ -8,7 +8,7 @@ namespace IttyMod.Events {
         public static void OnActionsCompleted(CompletionType type, DieAction __instance) {
             Person person = __instance.Person;
             Random random = new Random();
-            foreach(Person owner in GameImpl.Instance.Map.GetPeople()){
+            foreach(Person owner in __instance.Person.Map.GetPeople()){
                 if(random.Next(10) < 3) continue; // People are quite likely to post a bit when somebody dies.
                 Relationship relationship = owner.GetRelationship(person, true);
                 float friendship = relationship.FriendLevel;

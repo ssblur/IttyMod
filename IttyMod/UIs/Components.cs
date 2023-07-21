@@ -185,9 +185,10 @@ namespace IttyMod.UIs.Components
                 bitContainer = new Panel(Anchor.AutoCenter, new Vec2(1, 1), new Vec2(0, 0), false, true);
                 bitGroup.AddChild(bitContainer);
 
-                foreach(Bit b in BitManager.Load().Bits) {
-                    AddBit(b);
-                }
+                if(BitManager.INSTANCE != null)
+                    foreach(Bit b in BitManager.INSTANCE.Bits) {
+                        AddBit(b);
+                    }
                 BitManager.OnBitPublished += LoadBit;
             }
 

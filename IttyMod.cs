@@ -28,7 +28,7 @@ namespace IttyMod {
 
         // visual data about this mod
         public override string Name => "Itty";
-        public override string Description => "Reminds me of a certain site... \nBrings your Tiny Life online!";
+        public override string Description => "Brings your Tiny Life online!\nThis might be a mistake...";
         public override string IssueTrackerUrl => "https://github.com/ssblur/IttyMod/issues";
         public override TextureRegion Icon => IttyMod.uiTextures[0, 0];
         public override bool RequiresHarmony => false;
@@ -70,9 +70,7 @@ namespace IttyMod {
         public override void AddGameContent(GameImpl game, ModInfo info) {
             // People can Bit about other people.
             ActionType.Register(new ActionType.TypeSettings("IttyMod.BitPerson", ObjectCategory.People, typeof(Actions.PersonBitAction)) {
-                CanExecute = (info, automatic) => {
-                    return CanExecuteResult.Valid;
-                },
+                CanExecute = (info, automatic) => CanExecuteResult.Valid,
                 Ai = {
                     CanDoRandomly = true,
                     PassivePriority = p => 20
@@ -95,10 +93,16 @@ namespace IttyMod {
                 Texture = IttyMod.uiTextures[1, 0]
             });
             
+            
+            SaveHandler.OnSaveDataCreated += BitManager.OnSaveDataCreated;
+            SaveHandler.OnSaveDataLoaded += BitManager.OnSaveDataLoaded;
             game.UiSystem.OnRootAdded += IttyUI.RootHandler;
             TinyLife.SaveHandler.OnGameLoaded += (game, phase) => {
                 if(phase == EventPhase.Post)
-                    game.Map.OnUpdate += (_, _, _, _) => BitManager.AddReactionHook();
+                    game.OnFinishedLoading += () => {
+                        foreach(var map in game.CurrentMaps)
+                            game.CurrentMap.OnUpdate += (_, _, _, _) => BitManager.AddReactionHook();
+                    };
             };
 
             Person.OnEventsAttachable += mapObject => {

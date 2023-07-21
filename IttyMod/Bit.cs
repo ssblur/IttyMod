@@ -4,19 +4,34 @@ using System;
 using System.Linq;
 using TinyLife.Objects;
 using System.Runtime.Serialization;
+using TinyLife;
 
 namespace IttyMod {
 
     [DataContract()]
     public class Bit {
         #nullable enable
+        static T? GetMapObject<T>(GameImpl gameImpl, Guid guid) where T: MapObject{
+            foreach(var map in gameImpl.CurrentMaps.Values) {
+                var mapObject = map.GetObject<T>(guid);
+                if(mapObject != null)
+                    return mapObject;
+            }
+            return null;
+        }
+
+        static MapObject? GetMapObject(GameImpl gameImpl, Guid guid) {
+            return GetMapObject<MapObject>(gameImpl, guid);
+        }
+
+
         /// <summary>
         ///     The creator of a Bit
         ///     This may be undefined for "sponsored" bits.
         /// </summary>
         public Person? creator {
             get {
-                return creatorGuid != null ? TinyLife.GameImpl.Instance.Map.GetObject<Person>(creatorGuid.Value) : null;
+                return creatorGuid != null ? GetMapObject<Person>(GameImpl.Instance, creatorGuid.Value) : null;
             }
         }
         /// <summary>All people and objects which are mentioned in this bit.</summary>
@@ -24,7 +39,7 @@ namespace IttyMod {
             get {
                 List<MapObject> list = new List<MapObject>();
                 involvedGuids.ForEach(delegate(Guid guid){
-                    MapObject? obj = TinyLife.GameImpl.Instance.Map.GetObject<MapObject>(guid);
+                    MapObject? obj = GetMapObject(GameImpl.Instance, guid);
                     if(obj is not null)
                         list.Add(obj);
                 });
