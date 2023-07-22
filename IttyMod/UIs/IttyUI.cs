@@ -20,11 +20,14 @@ namespace IttyMod.UIs
                     if(element is Panel) {
                         if(i == 0) {
                             i++;
-                            IttyMod.Logger.Debug(element);
                             var panel = new IttyUI();
-                            var button = new IttyButton(panel);
                             panel.root = element;
-                            element.AddChild(button);
+
+                            var group = new Group(Anchor.AutoLeft, new Vec2(16, 14));
+                            var button = new IttyButton(panel);
+                            group.AddChild(button);
+                        
+                            element.AddChild(group);
                         }
                         i++;
                     }

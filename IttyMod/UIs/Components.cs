@@ -127,15 +127,19 @@ namespace IttyMod.UIs.Components
     class IttyButton : Button {
         IttyUI ui;
         public IttyButton(IttyUI ittyUi) : base(
-            Anchor.AutoLeft, 
-            new Vec2(16, 16), 
+            Anchor.AutoCenter, 
+            new Vec2(14, 14), 
             "", 
-            "Open Itty to become sad"
+            "Open Itty"
         ) {
-            Texture = new NinePatch(IttyMod.uiTextures[1, 0], 6, 6, 2, 2);
+            var image = new Image(Anchor.Center, new Vec2(14, 14), IttyMod.uiTextures[1, 0], true);
+            image.Padding = new Padding(3, 3);
+            AddChild(image);
+
+            // Texture = new NinePatch(IttyMod.uiTextures[1, 0], 6, 6, 2, 2);
             OnPressed += Callback;
             ui = ittyUi;
-            this.Padding = new Padding(2, 2);
+            this.Padding = new Padding(0, 0);
         }
 
         public void Callback(Element element) {
