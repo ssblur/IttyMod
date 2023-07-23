@@ -1,6 +1,7 @@
 {
   "Actions": {
     "IttyMod.Bit": "Bit About Something",
-    "IttyMod.BitPerson": "Bit About Them"
+    "IttyMod.BitPerson": "Bit About Them",
+    "mustwait": "Not ready yet..."
   }
 }

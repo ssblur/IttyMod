@@ -17,9 +17,9 @@ namespace IttyMod.Actions {
         public BitAction(ActionType type, ActionInfo info) : base(type, info) {
             random = new Random();
             if(random.Next(50) == 0)
-                this.pose = Pose.Laying;
+                this.pose = Pose.SittingGround;
             else
-                this.pose = Pose.Standing;
+                this.pose = Pose.WorkingStanding;
         }
 
         protected override IEnumerable<Action> CreateFirstActions() {
