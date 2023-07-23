@@ -39,7 +39,10 @@ namespace IttyMod.UIs.Components
                     pronouns = String.Format("\n({0})", bit.creator.Pronouns);
                 var location = "";
                 if(bit.creator.Map != GameImpl.Instance.CurrentMap)
-                    location = String.Format("\nfrom {0}", bit.creator.Map.Info.Name);
+                    if(bit.creator.Map.Info.Custom)
+                        location = String.Format("\nfrom {0}", bit.creator.Map.Info.Name);
+                    else
+                        location = String.Format("\nfrom {0}", Localization.Get(LnCategory.Names, bit.creator.Map.Info.Name));
                 var nameTag = String.Format("@{0}{1}", bit.creator.FirstName, bit.creator.LastName);
                 nameTag = nameTag.Substring(0, Math.Min(13, nameTag.Length));
                 Paragraph tag = new Paragraph(
