@@ -10,6 +10,7 @@ using Vec2 = Microsoft.Xna.Framework.Vector2;
 using TinyLife.Objects;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using TinyLife;
 
 namespace IttyMod.UIs.Components 
 {
@@ -36,13 +37,17 @@ namespace IttyMod.UIs.Components
                 var pronouns = "";
                 if(bit.creator.Pronouns != null && bit.creator.Pronouns.Length > 0)
                     pronouns = String.Format("\n({0})", bit.creator.Pronouns);
+                var location = "";
+                if(bit.creator.Map != GameImpl.Instance.CurrentMap)
+                    location = String.Format("\nfrom {0}", bit.creator.Map.Info.Name);
                 var nameTag = String.Format("@{0}{1}", bit.creator.FirstName, bit.creator.LastName);
                 nameTag = nameTag.Substring(0, Math.Min(13, nameTag.Length));
                 Paragraph tag = new Paragraph(
                     Anchor.AutoLeft, 
                     panelSize.X, 
-                    String.Format("{0}{1}", nameTag, pronouns)
+                    String.Format("{0}{1}{2}", nameTag, pronouns, location)
                 );
+                tag.TextScaleMultiplier = 0.9f;
                 tag.TextColor = new Microsoft.Xna.Framework.Color(150, 150, 150);
                 leftColumn.AddChild(tag);
             } else {
