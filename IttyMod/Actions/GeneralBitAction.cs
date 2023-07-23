@@ -14,7 +14,7 @@ namespace IttyMod.Actions
         {
             Person owner = this.Info.Person;
 
-            var timer = TinyLife.GameImpl.Instance.CurrentMap.Time + new TimeSpan(0, 30, 0);
+            var timer = owner.Map.Time + new TimeSpan(0, 30, 0);
             if(owner.GetData<TimeSpan?>("randomBitTimer") == null || owner.GetData<TimeSpan?>("randomBitTimer") < timer)
                 owner.SetData("randomBitTimer", timer);
 
