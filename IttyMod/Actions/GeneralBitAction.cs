@@ -20,7 +20,7 @@ namespace IttyMod.Actions
 
             IttyMod.BitDisposition bitDisposition = owner.Emotion.Category switch {
                 EmotionType.TypeCategory.Negative => IttyMod.BitDisposition.NEGATIVE,
-                EmotionType.TypeCategory.Positive => bitDisposition = IttyMod.BitDisposition.POSITIVE,
+                EmotionType.TypeCategory.Positive => IttyMod.BitDisposition.POSITIVE,
                 _ => IttyMod.BitDisposition.NEUTRAL,
             };
 

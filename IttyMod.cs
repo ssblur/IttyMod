@@ -30,7 +30,7 @@ namespace IttyMod {
         public override string Name => "Itty";
         public override string Description => "Brings your Tiny Life online!\nThis might be a mistake...";
         public override string IssueTrackerUrl => "https://github.com/ssblur/IttyMod/issues";
-        public override string TestedVersionRange => "[0.38.0,0.38.0]";
+        public override string TestedVersionRange => "[0.39.1,0.40.1]";
 
         public override TextureRegion Icon => IttyMod.uiTextures[0, 0];
         public override bool RequiresHarmony => false;
@@ -71,17 +71,25 @@ namespace IttyMod {
 
         public override void AddGameContent(GameImpl game, ModInfo info) {
             // People can Bit about other people.
-            ActionType.Register(new ActionType.TypeSettings("IttyMod.BitPerson", ObjectCategory.People, typeof(Actions.PersonBitAction)) {
+            ActionType.Register(new ActionType.TypeSettings(
+                "IttyMod.BitPerson", 
+                ObjectCategory.People, 
+                typeof(Actions.PersonBitAction)
+                ) {
                 CanExecute = (info, automatic) => CanExecuteResult.Valid,
                 Ai = {
                     CanDoRandomly = true,
                     PassivePriority = p => 20
                 },
-                Texture = IttyMod.uiTextures[1, 0]
+                Texture = uiTextures[1, 0]
             });
 
             // People can just post randomly.
-            ActionType.Register(new ActionType.TypeSettings("IttyMod.Bit", ObjectCategory.Self, typeof(Actions.GeneralBitAction)) {
+            ActionType.Register(new ActionType.TypeSettings(
+                "IttyMod.Bit", 
+                ObjectCategory.Self, 
+                typeof(Actions.GeneralBitAction)
+                ) {
                 CanExecute = (info, automatic) => {
                     TimeSpan? time = info.Person.GetData<TimeSpan>("randomBitTimer");
                     if(time == null || time < info.Person.Map.Time)
@@ -92,7 +100,7 @@ namespace IttyMod {
                     CanDoRandomly = true,
                     PassivePriority = p => 10
                 },
-                Texture = IttyMod.uiTextures[1, 0]
+                Texture = uiTextures[1, 0]
             });
             
             
