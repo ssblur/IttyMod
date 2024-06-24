@@ -67,6 +67,6 @@ namespace IttyMod.Tricks {
         ///     Return true to cancel this bit but continue processing tricks.
         ///     Return false to cancel this bit and stop processing later tricks.
         /// </returns>
-        public abstract SubstitutionOrSuccess parse(string trick, Person? owner, List<MapObject> involved);
+        public abstract SubstitutionOrSuccess parse(string trick, PersonLike? owner, List<MapObject> involved);
     }
 }

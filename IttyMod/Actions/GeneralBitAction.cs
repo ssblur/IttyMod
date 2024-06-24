@@ -12,7 +12,7 @@ namespace IttyMod.Actions
         public GeneralBitAction(ActionType type, ActionInfo info) : base(type, info) { }
         protected override Bit BitAboutIt()
         {
-            Person owner = this.Info.Person;
+            PersonLike owner = this.Info.Person;
 
             var timer = owner.Map.Time + new TimeSpan(0, 30, 0);
             if(owner.GetData<TimeSpan?>("randomBitTimer") == null || owner.GetData<TimeSpan?>("randomBitTimer") < timer)

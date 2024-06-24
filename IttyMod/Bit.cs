@@ -52,7 +52,7 @@ namespace IttyMod {
         [DataMember()] public Guid? creatorGuid;
         [DataMember()] public List<Guid> involvedGuids;
         [DataMember()] public int[] reactions;
-        public Bit(string contents, Person? creator, params MapObject[] objects) {
+        public Bit(string contents, PersonLike? creator, params MapObject[] objects) {
             content = contents;
 
             creatorGuid = creator != null ? creator.Id : null;

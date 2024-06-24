@@ -36,7 +36,7 @@ namespace IttyMod.Tricks {
         }
 
 
-        public static Bit GenerateBit(String content, Person creator, MapObject[] involved) {
+        public static Bit GenerateBit(String content, PersonLike creator, MapObject[] involved) {
             string value = _TrickMagicRegex.Replace(content, match => {
                 if(_TrickStringRegex.IsMatch(match.Value))
                     return _TrickStringRegex.Replace(match.Value, stringMatch => {
@@ -65,7 +65,7 @@ namespace IttyMod.Tricks {
             return new Bit(value, creator, involved);
         }
 
-        public static Bit GenerateFormattedBit(string category, IttyMod.BitDisposition disposition, Person creator, params MapObject[] involved) {
+        public static Bit GenerateFormattedBit(string category, IttyMod.BitDisposition disposition, PersonLike creator, params MapObject[] involved) {
             try {
                 string text = IttyMod.LocalizedBit(category, disposition);
                 return GenerateBit(text, creator, involved);

@@ -6,7 +6,7 @@ using System;
 namespace IttyMod.Events {
     public class DeathEvent {
         public static void OnActionsCompleted(CompletionType type, DieAction __instance) {
-            Person person = __instance.Person;
+            PersonLike person = __instance.Person;
             Random random = new Random();
             foreach(Person owner in __instance.Person.Map.GetPeople()){
                 if(random.Next(10) < 3) continue; // People are quite likely to post a bit when somebody dies.

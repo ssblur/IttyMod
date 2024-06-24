@@ -11,8 +11,8 @@ namespace IttyMod.Actions
         public PersonBitAction(ActionType type, ActionInfo info) : base(type, info) { }
         protected override Bit BitAboutIt()
         {
+            PersonLike owner = this.Info.Person;
             Person person = Info.GetActionObject<Person>();
-            Person owner = this.Info.Person;
 
             Relationship relationship = person.GetRelationship(owner, true);
             float friendship = relationship.FriendLevel;

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace IttyMod.Tricks {
     class FirstNameTrick : Trick
     {
-        public override SubstitutionOrSuccess parse(string trick, Person owner, List<MapObject> involved)
+        public override SubstitutionOrSuccess parse(string trick, PersonLike owner, List<MapObject> involved)
         {
             return owner.FirstName;
         }
@@ -13,7 +13,7 @@ namespace IttyMod.Tricks {
 
     class LastNameTrick : Trick
     {
-        public override SubstitutionOrSuccess parse(string trick, Person owner, List<MapObject> involved)
+        public override SubstitutionOrSuccess parse(string trick, PersonLike owner, List<MapObject> involved)
         {
             return owner.FirstName;
         }
@@ -21,10 +21,10 @@ namespace IttyMod.Tricks {
     
     class TargetFirstNameTrick : Trick
     {
-        public override SubstitutionOrSuccess parse(string trick, Person owner, List<MapObject> involved)
+        public override SubstitutionOrSuccess parse(string trick, PersonLike owner, List<MapObject> involved)
         {
             int index = Int32.Parse(trick);
-            if(index < involved.Count && involved[index] is Person person)
+            if(index < involved.Count && involved[index] is PersonLike person)
                 return person.FirstName;
             return "";
         }
@@ -32,10 +32,10 @@ namespace IttyMod.Tricks {
 
     class TargetLastNameTrick : Trick
     {
-        public override SubstitutionOrSuccess parse(string trick, Person owner, List<MapObject> involved)
+        public override SubstitutionOrSuccess parse(string trick, PersonLike owner, List<MapObject> involved)
         {
             int index = Int32.Parse(trick);
-            if(index < involved.Count && involved[index] is Person person)
+            if(index < involved.Count && involved[index] is PersonLike person)
                 return person.LastName;
             return "";
         }
@@ -43,7 +43,7 @@ namespace IttyMod.Tricks {
 
     class TargetTagTrick : Trick 
     {
-        public override SubstitutionOrSuccess parse(string trick, Person owner, List<MapObject> involved)
+        public override SubstitutionOrSuccess parse(string trick, PersonLike owner, List<MapObject> involved)
         {
             int index = Int32.Parse(trick);
             if(index < involved.Count && involved[index] is Person person) {
