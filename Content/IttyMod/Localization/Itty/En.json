@@ -22,7 +22,8 @@
       "{!@tag:0!} mind if I drop by sometime? miss hangin out",
       "{!@tag:0!} seems cool",
       "{!@tag:0!} looks like the guy from Burgundy 5 in a good way",
-      "{!@tag:0!} made me a pretty good omelette the other day"
+      "{!@tag:0!} made me a pretty good omelette the other day",
+      "Y'all, get you a {!@tag:0!} in your life"
     ],
     "Negative": [
       "ugh can't believe I have to be here with {!@first:0!}. wish I could go home",
@@ -52,7 +53,8 @@
       "people like {!@first:0!} will never learn",
       "stinky stinky {!@tag:0!}",
       "I would never play Makebreak with {!@first:0!}",
-      "About the allegations that {!@first:0!} is my friend: what? no"
+      "About the allegations that {!@first:0!} is my friend: what? no",
+      "{!@tag:0!}, we're beefing now. no WAY you said that about me? on my birthday?!?"
     ],
     "Neutral": [
       "chilling with {!@first:0!}",
@@ -72,7 +74,8 @@
       "{!@first:0!} just said my mom was a camel. How dare you.",
       "{!@tag:0!} I didn't realize you were on this site.",
       "{!@tag:0!} do you know any places in town with good egg rolls?",
-      "watched Wasp Movie with {!@tag:0!} the other day. I feel like in another timeline it might've been better"
+      "watched Wasp Movie with {!@tag:0!} the other day. I feel like in another timeline it might've been better",
+      "hey {!@tag:0!} we should meet up some time."
     ]
   },
   "General": {
@@ -103,7 +106,10 @@
       "Love when a cat sits on your lap and just purrs. so sweet <3",
       "finally bit the bullet and installed haha funny [peace pipe]. would recommend 0/10",
       "just caught the new ognorr video that man can do no wrong",
-      "playing with scriptor and I don't get it? when I write a spell it says it's invalid"
+      "playing with scriptor and I don't get it? when I write a spell it says it's invalid",
+      "good day today, ate 3 pounds of potatoes!",
+      "Been nostalgic for Shuttle Ooze lately, think I'll bust out the 2-PICO",
+      "Keep posting pics of cats please. I live for this"
     ],
     "Negative": [
       "not feeling too hot #badvibes",
@@ -140,7 +146,10 @@
       "bringing a whole new \"eating the plate\" energy to dinner that nobody appreciates",
       "anyone have any spare avocado? really need some guacamole today",
       "Can't believe that this site got bought out by that guy... Think I'm switching sites",
-      "since that guy bought this site, I'm taking a break for a few days {!nopost:4320!}"
+      "since that guy bought this site, I'm taking a break for a few days {!nopost:4320!}",
+      "Folks from Demoville don't even know what having a coffee shop's like. Honestly feel sorry for 'em",
+      "Bad day. Gonna make it worse. Who wants to commit crimes with me?",
+      "I swear, a coffee costs at least thrice what it should. THRICE!"
       ],
     "Neutral": [
       "just watched gryphon's selig: selig in time randomizer, pretty good stuff! lots of hot dogs this episode",
@@ -221,7 +230,8 @@
       "say what you want about deej, they have perserverance",
       "I wish pinball was real",
       "my milk expires tomorrow does anybody want some I can't drink it all",
-      "is it considered gauche to post my sponsor links here?"
+      "is it considered gauche to post my sponsor links here?",
+      "Now accepting all offers for free money. Serious replies only!!"
     ]
   },
   "Death": {
