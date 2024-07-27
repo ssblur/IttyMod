@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System;
 using MLEM.Ui;
 using MLEM.Ui.Elements;
-using MLEM.Misc;
+using MLEM.Maths;
 using MLEM.Textures;
 using MLEM.Graphics;
 using TinyLife.Uis;
@@ -27,7 +27,7 @@ namespace IttyMod.UIs.Components
 
             // Split tag groups into columns for formatting.
             Group group = new Group(Anchor.AutoCenter, new Vec2(1f, 1f), true);
-            group.Padding = new MLEM.Misc.Padding(5, 5, 0, 0);
+            group.Padding = new Padding(5, 5, 0, 0);
             Group leftColumn = new Group(Anchor.TopLeft, panelSize, true);
             Group rightColumn = new Group(Anchor.TopRight, panelSize, true);
             if(bit.creator != null){
