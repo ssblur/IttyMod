@@ -12,13 +12,9 @@ namespace IttyMod {
     [DataContract()]
     public class Bit {
         #nullable enable
-        static T? GetMapObject<T>(GameImpl gameImpl, Guid guid) where T: MapObject{
-            foreach(var map in gameImpl.CurrentMaps.Values) {
-                var mapObject = map.GetObject<T>(guid);
-                if(mapObject != null)
-                    return mapObject;
-            }
-            return null;
+        static T? GetMapObject<T>(GameImpl gameImpl, Guid guid) where T: MapObject
+        {
+            return gameImpl.CurrentMaps.Values.Select(map => map.GetObject<T>(guid)).FirstOrDefault();
         }
 
         static MapObject? GetMapObject(GameImpl gameImpl, Guid guid) {
@@ -63,13 +59,10 @@ namespace IttyMod {
         /// <summary>All people and objects which are mentioned in this bit.</summary>
         public List<MapObject> involved {
             get {
-                List<MapObject> list = new List<MapObject>();
-                involvedGuids.ForEach(delegate(Guid guid){
-                    MapObject? obj = GetMapObject(GameImpl.Instance, guid);
-                    if(obj is not null)
-                        list.Add(obj);
-                });
-                return list;
+                return involvedGuids.Where(delegate(Guid guid){
+                    var obj = GetMapObject(GameImpl.Instance, guid);
+                    return obj is not null;
+                }).Select(guid => GetMapObject(GameImpl.Instance, guid)!).ToList();
             }
         }
         /// <summary>The text contents of a Bit</summary>
