@@ -30,7 +30,8 @@ namespace IttyMod {
         public override string Name => "Itty";
         public override string Description => "Brings your Tiny Life online!\nThis might be a mistake...";
         public override string IssueTrackerUrl => "https://github.com/ssblur/IttyMod/issues";
-        public override string TestedVersionRange => "[0.44.0,0.47.2]";
+        public override string TestedVersionRange => "[0.47.9,0.47.9]";
+        public override string Version => "1.3.0";
 
         public override TextureRegion Icon => IttyMod.uiTextures[0, 0];
         public override bool RequiresHarmony => false;
@@ -49,13 +50,13 @@ namespace IttyMod {
         // Set up this way to notice language changes.
         protected static JObject Lang {
             get {
-                if(LoadedLang == TinyLife.Options.Instance.Language)
+                if(LoadedLang == Options.Instance.Language)
                     return _InternalLang;
-                LoadedLang = TinyLife.Options.Instance.Language;
+                LoadedLang = Options.Instance.Language;
                 
                 try 
                 { 
-                    return _InternalLang = Manager.Load<JObject>("Localization/Itty/" + TinyLife.Options.Instance.Language);
+                    return _InternalLang = Manager.Load<JObject>("Localization/Itty/" + Options.Instance.Language);
                 } 
                 catch (ContentLoadException e) when (LoadedLang != "En") // Load English if the existing lang can't be found.
                 {
@@ -79,7 +80,7 @@ namespace IttyMod {
                 CanExecute = (info, automatic) => CanExecuteResult.Valid,
                 Ai = {
                     CanDoRandomly = true,
-                    PassivePriority = p => 20
+                    PassivePriority = p => 40
                 },
                 Texture = uiTextures[1, 0]
             });
@@ -91,31 +92,30 @@ namespace IttyMod {
                 typeof(Actions.GeneralBitAction)
                 ) {
                 CanExecute = (info, automatic) => {
-                    TimeSpan? time = info.Person.GetData<TimeSpan>("randomBitTimer");
-                    if(time == null || time < info.Person.Map.Time)
-                        return CanExecuteResult.Valid;
-                    return WaitingRequired;
+                    var time = info.Person.GetData<TimeSpan?>("randomBitTimer");
+                    if (!automatic || time == null) return CanExecuteResult.Valid;
+                    return time < info.Person.Map.Time ? CanExecuteResult.Valid : WaitingRequired;
                 },
                 Ai = {
                     CanDoRandomly = true,
-                    PassivePriority = p => 10
+                    PassivePriority = p => 1
                 },
                 Texture = uiTextures[1, 0]
             });
             
-            
             SaveHandler.OnSaveDataCreated += BitManager.OnSaveDataCreated;
             SaveHandler.OnSaveDataLoaded += BitManager.OnSaveDataLoaded;
+            
             game.UiSystem.OnRootAdded += IttyUI.RootHandler;
-            TinyLife.SaveHandler.OnGameLoaded += (game, phase) => {
+            SaveHandler.OnGameLoaded += (game, phase) => {
                 if(phase == EventPhase.Post)
                     game.OnFinishedLoading += () => {
-                        foreach(var map in game.CurrentMaps)
-                            game.CurrentMap.OnUpdate += (_, _, _, _) => BitManager.AddReactionHook();
+                        foreach(var (_, map) in game.CurrentMaps)
+                            map.OnUpdate += (_, _, _, _) => BitManager.AddReactionHook();
                     };
             };
 
-            Person.OnEventsAttachable += mapObject => {
+            MapObject.OnEventsAttachable += mapObject => {
                 if(mapObject is Person person)
                     person.OnActionsCompleted += (action, completion, isAuxilliary) => {
                         if(action is DieAction die) 
@@ -143,9 +143,9 @@ namespace IttyMod {
 
         // Lets you select a specific disposition for your Bit.
         public enum BitDisposition { 
-            POSITIVE,
-            NEGATIVE,
-            NEUTRAL
+            Positive,
+            Negative,
+            Neutral
         }
 
         /// <summary>
@@ -155,21 +155,17 @@ namespace IttyMod {
         /// <param name="disposition">The user's disposition towards this bit</param>
         public static string LocalizedBit(string key, BitDisposition disposition)
         {
-            if(Lang != null)
+            if (Lang == null) return "what is this, some kind of placeholder???";
+            var polarity = disposition switch
             {
-                string polarity = "Neutral";
-                if(disposition == BitDisposition.POSITIVE)
-                    polarity = "Positive";
-                else if (disposition == BitDisposition.NEGATIVE) 
-                    polarity = "Negative";
-                string[] array = Lang.SelectToken(key + "." + polarity)?.ToObject<string[]>();
+                BitDisposition.Positive => "Positive",
+                BitDisposition.Negative => "Negative",
+                _ => "Neutral"
+            };
+            var array = Lang.SelectToken(key + "." + polarity)?.ToObject<string[]>();
 
-                if(array == null) return "honestly at a loss for words...";
-                
-                return array[Generator.Next(0, array.Length)];
-            }
+            return array == null ? "honestly at a loss for words..." : array[Generator.Next(0, array.Length)];
 
-            return "feelin gprety.. .might delete l8r..,";
         }
     }
 }

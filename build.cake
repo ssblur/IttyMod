@@ -28,7 +28,7 @@ Task("Run").IsDependentOn("CopyToMods").Does(() => {
     var exeDir = $"{tinyLifeDir}/GameDir";
     if (!FileExists(exeDir))
         throw new Exception("Didn't find game directory information. Run the game manually at least once to allow the Run task to be executed.");
-    var exe = $"{System.IO.File.ReadAllText(exeDir)}/Tiny Life";
+    var exe = $"{System.IO.File.ReadAllText(exeDir)}TinyLife";
     var process = Process.Start(new ProcessStartInfo(exe) {
         Arguments = "-v --skip-splash --skip-preloads",
         CreateNoWindow = true

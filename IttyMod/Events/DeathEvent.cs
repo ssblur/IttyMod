@@ -13,11 +13,11 @@ namespace IttyMod.Events {
                 Relationship relationship = owner.GetRelationship(person, true);
                 float friendship = relationship.FriendLevel;
 
-                IttyMod.BitDisposition bitDisposition = IttyMod.BitDisposition.NEUTRAL;
+                IttyMod.BitDisposition bitDisposition = IttyMod.BitDisposition.Neutral;
                 if (friendship >= 10)
-                    bitDisposition = IttyMod.BitDisposition.POSITIVE;
+                    bitDisposition = IttyMod.BitDisposition.Positive;
                 else if (friendship <= 0)
-                    bitDisposition = IttyMod.BitDisposition.NEGATIVE;
+                    bitDisposition = IttyMod.BitDisposition.Negative;
 
                 Bit bit = Tricks.TrickRegistry.GenerateFormattedBit("Death", bitDisposition, owner, person);
                 

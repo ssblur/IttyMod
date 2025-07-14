@@ -1,3 +1,4 @@
+#nullable enable
 using System.Collections.Generic;
 using System;
 using System.Runtime.Serialization;
@@ -10,37 +11,35 @@ namespace IttyMod {
     /// but there should only be one open at once.
     /// Plus, this makes it easy to access.
     /// </summary>
-    [DataContract()]
+    [DataContract]
     class BitManager {
-        public static BitManager INSTANCE;
+        public static BitManager? Instance;
         public static void OnSaveDataCreated(GameImpl gameImpl, SaveHandler.SaveData saveData) {
-            if(INSTANCE == null)
-                INSTANCE = new BitManager();
-            saveData.SetData("Itty.BitManager", INSTANCE);
+            IttyMod.Logger.Info("Creating BitManager...");
+            Instance ??= new BitManager();
+            saveData.SetData("Itty.BitManager", Instance);
         }
 
         public static void OnSaveDataLoaded(GameImpl gameImpl, SaveHandler.SaveData saveData) {
             IttyMod.Logger.Info("Loading BitManager...");
-            var instance = saveData.GetData<BitManager>("Itty.BitManager");
-            if(instance == null)
-                instance = new BitManager();
-            INSTANCE = instance;
+            var instance = saveData.GetData<BitManager>("Itty.BitManager") ?? new BitManager();
+            Instance = instance;
         }
 
         [DataMember()] public Queue<Bit> Bits { get; set; }
-        static Random random = new Random();
+        static Random random = new();
         private BitManager() {
             Bits = new Queue<Bit>();
         }
 
         public static void AddBit(Bit bit) {
-            if(INSTANCE == null) {
+            if(Instance == null) {
                 IttyMod.Logger.Warn("BitManager not instantiated. Was there an error during loading?");
                 return;
             }
 
-            INSTANCE.Bits.Enqueue(bit);
-            if(INSTANCE.Bits.Count > 64) INSTANCE.Bits.Dequeue();
+            Instance.Bits.Enqueue(bit);
+            if(Instance.Bits.Count > 64) Instance.Bits.Dequeue();
             try {
                 OnBitPublished(bit);
             } catch (NullReferenceException e) {
@@ -49,10 +48,10 @@ namespace IttyMod {
         }
 
         public void AddReaction() {
-            if(this.Bits.Count == 0) return;
+            if(Bits.Count == 0) return;
             
             var random = new Random();
-            var item = random.NextInt64(this.Bits.Count);
+            var item = random.NextInt64(Bits.Count);
             var bit = this.Bits.ToArray()[item];
             var reaction = random.NextInt64(bit.reactions.Length);
             var reroll = 0;
@@ -68,7 +67,7 @@ namespace IttyMod {
 
         public static void AddReactionHook() {
             if(random.NextInt64(50) == 0) 
-                INSTANCE.AddReaction();
+                Instance?.AddReaction();
         }
 
         public delegate void BitPublishedHandler(Bit bit);

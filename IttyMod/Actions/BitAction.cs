@@ -23,7 +23,7 @@ namespace IttyMod.Actions {
         }
 
         protected override IEnumerable<Action> CreateFirstActions() {
-            yield return ActionType.GoHere.Construct<GoHereAction>(this.Info);
+            yield return ActionType.GoHere.Construct<GoHereAction>(Info);
         }
 
         protected override void AndThenInitialize() {
@@ -32,18 +32,18 @@ namespace IttyMod.Actions {
 
         protected override void AndThenUpdate(GameTime time, TimeSpan passedInGame, float speedModifier) {
             base.AndThenUpdate(time, passedInGame, speedModifier);
-            this.Person.CurrentPose = pose;
+            Person.CurrentPose = pose;
 
-            this.Person.RestoreNeed(NeedType.Entertainment, 0.5F, Info, speedModifier);
-            this.Person.RestoreNeed(NeedType.Social, 0.1F, Info, speedModifier);
+            Person.RestoreNeed(NeedType.Entertainment, 0.5F, Info, speedModifier);
+            Person.RestoreNeed(NeedType.Social, 0.1F, Info, speedModifier);
         }
 
         protected override CompletionType AndThenIsCompleted() {
-            return this.CompleteIfTimeUp(TimeSpan.FromMinutes(1));
+            return CompleteIfTimeUp(TimeSpan.FromMinutes(1));
         }
 
         protected override void AndThenOnCompleted(CompletionType type) {
-            Bit bit = BitAboutIt();
+            var bit = BitAboutIt();
             if(bit != null)
                 BitManager.AddBit(bit);
 

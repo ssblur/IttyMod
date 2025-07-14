@@ -17,11 +17,11 @@ namespace IttyMod.Actions
             Relationship relationship = person.GetRelationship(owner, true);
             float friendship = relationship.FriendLevel;
 
-            IttyMod.BitDisposition bitDisposition = IttyMod.BitDisposition.NEUTRAL;
+            IttyMod.BitDisposition bitDisposition = IttyMod.BitDisposition.Neutral;
             if (friendship < 10 && random.Next(10) < 8)
-                bitDisposition = IttyMod.BitDisposition.POSITIVE;
+                bitDisposition = IttyMod.BitDisposition.Positive;
             else if (friendship > 10 && random.Next(10) < 8)
-                bitDisposition = IttyMod.BitDisposition.NEGATIVE;
+                bitDisposition = IttyMod.BitDisposition.Negative;
 
             return Tricks.TrickRegistry.GenerateFormattedBit("Person", bitDisposition, this.Person, person);
         }

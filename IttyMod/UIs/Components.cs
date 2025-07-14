@@ -20,77 +20,83 @@ namespace IttyMod.UIs.Components
         public BitPanel(Bit bit): base(Anchor.AutoCenter, new Vec2(0.95f, 0f), new Vec2(0, 0), true) {
             this.bit = bit;
 
-            Paragraph text = new Paragraph(Anchor.AutoRight, 130, bit.content);
-            this.AddChild(text, 0);
+            var text = new Paragraph(Anchor.AutoRight, 130, bit.content);
+            AddChild(text, 0);
             var panelSize = new Vec2(0.475f, 1);
-            float profileSize = 20;
+            const float profileSize = 20;
 
             // Split tag groups into columns for formatting.
-            Group group = new Group(Anchor.AutoCenter, new Vec2(1f, 1f), true);
-            group.Padding = new Padding(5, 5, 0, 0);
-            Group leftColumn = new Group(Anchor.TopLeft, panelSize, true);
-            Group rightColumn = new Group(Anchor.TopRight, panelSize, true);
+            var group = new Group(Anchor.AutoCenter, new Vec2(1f, 1f), true) {
+                Padding = new Padding(5, 5, 0, 0)
+            };
+            var leftColumn = new Group(Anchor.TopLeft, panelSize, true);
+            var rightColumn = new Group(Anchor.TopRight, panelSize, true);
             if(bit.creator != null){
-                Image image = new Image(Anchor.TopLeft, new Vec2(profileSize, profileSize), new TextureRegion(bit.creator.Portrait));
-                this.AddChild(image);
+                AddChild(
+                    new Image(
+                        Anchor.TopLeft, 
+                        new Vec2(profileSize, profileSize),
+                        new TextureRegion(bit.creator.Portrait)
+                    )
+                );
 
                 var pronouns = "";
-                if(bit.creator.Pronouns != null && bit.creator.Pronouns.Length > 0)
-                    pronouns = String.Format("\n({0})", bit.creator.Pronouns);
-                var location = "";
-                if(bit.creator.Map != GameImpl.Instance.CurrentMap)
-                    if(bit.creator.Map.Info.Custom)
-                        location = String.Format("\nfrom {0}", bit.creator.Map.Info.Name);
-                    else
-                        location = String.Format("\nfrom {0}", Localization.Get(LnCategory.Names, bit.creator.Map.Info.Name));
-                var nameTag = String.Format("@{0}{1}", bit.creator.FirstName, bit.creator.LastName);
-                nameTag = nameTag.Substring(0, Math.Min(13, nameTag.Length));
-                Paragraph tag = new Paragraph(
+                if(bit.creator.Pronouns is { Length: > 0 })
+                    pronouns = $"\n({bit.pronouns})";
+                var location = $"\nfrom {bit.mapName}";
+                var nameTag = bit.nameTag;
+                nameTag = nameTag[..Math.Min(13, nameTag.Length)];
+                var tag = new Paragraph(
                     Anchor.AutoLeft, 
-                    panelSize.X, 
-                    String.Format("{0}{1}{2}", nameTag, pronouns, location)
-                );
-                tag.TextScaleMultiplier = 0.9f;
-                tag.TextColor = new Microsoft.Xna.Framework.Color(150, 150, 150);
+                    panelSize.X,
+                    $"{nameTag}{pronouns}{location}"
+                ) {
+                    TextScaleMultiplier = 0.9f,
+                    TextColor = new Color(150, 150, 150)
+                };
                 leftColumn.AddChild(tag);
             } else {
-                Image image = new Image(Anchor.CenterLeft, new Vec2(profileSize, profileSize), IttyMod.uiTextures[0, 0]);
-                this.AddChild(image);
+                var image = new Image(Anchor.CenterLeft, new Vec2(profileSize, profileSize), IttyMod.uiTextures[0, 0]);
+                AddChild(image);
 
-                Paragraph tag = new Paragraph(Anchor.AutoLeft, panelSize.X, String.Format("Deactivated"));
-                tag.TextColor = new Microsoft.Xna.Framework.Color(150, 150, 50);
+                var tag = new Paragraph(Anchor.AutoLeft, panelSize.X, "Deactivated") {
+                    TextColor = new Color(150, 150, 50)
+                };
                 leftColumn.AddChild(tag);
             }
 
-            foreach(MapObject involved in bit.involved) {
-                if(involved is Person person) {
-                    var nameTag = String.Format("@{0}{1}", person.FirstName, person.LastName);
-                    nameTag = nameTag.Substring(0, Math.Min(13, nameTag.Length));
-                    Paragraph tag = new Paragraph(Anchor.AutoRight, panelSize.X, String.Format("+{0}", nameTag));
-                    tag.Alignment = MLEM.Formatting.TextAlignment.Right;
-                    tag.TextColor = new Microsoft.Xna.Framework.Color(150, 150, 250);
-                    rightColumn.AddChild(tag);
-                } else {
-                    
-                }
+            foreach(var involved in bit.involved) {
+                if (involved is not Person person) continue;
+                var nameTag = $"@{person.FirstName}{person.LastName}";
+                nameTag = nameTag[..Math.Min(13, nameTag.Length)];
+                var tag = new Paragraph(Anchor.AutoRight, panelSize.X, $"+{nameTag}") {
+                    Alignment = MLEM.Formatting.TextAlignment.Right,
+                    TextColor = new Color(150, 150, 250)
+                };
+                rightColumn.AddChild(tag);
             }
             group.AddChild(leftColumn);
             group.AddChild(rightColumn);
-            this.AddChild(group);
+            AddChild(group);
+        }
+
+        public sealed override T AddChild<T>(T element, int index = -1)
+        {
+            return base.AddChild(element, index);
         }
 
         public override void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context) {
             base.Draw(time, batch, alpha, context); 
 
-            var scale = 2;
+            const int scale = 2;
             var activeIndex = 0;
-            for(int i = 0; i < bit.reactions.Length; i++) {
+            for(var i = 0; i < bit.reactions.Length; i++) {
                 if(bit.reactions[i] == 0) continue;
 
                 activeIndex++;
                 var tex = IttyMod.uiTextures[i, 1, 1, 1];
-                var pos = this.DisplayArea.Location;
-                pos += new Vec2(this.DisplayArea.Size.X / 2f, this.DisplayArea.Size.Y - 12);
+                var pos = DisplayArea.Location;
+                pos += new Vec2(DisplayArea.Size.X / 2f, this.DisplayArea.Size.Y - 12);
                 pos -= new Vec2(-tex.Width * scale * (activeIndex - 2.5f), tex.Height * scale);
 
                 batch.Draw(
@@ -107,7 +113,7 @@ namespace IttyMod.UIs.Components
 
             // Always draw over all icons
             activeIndex = 0;
-            for(int i = 0; i < bit.reactions.Length; i++) {
+            for(var i = 0; i < bit.reactions.Length; i++) {
                 if(bit.reactions[i] == 0) continue;
 
                 activeIndex++;
@@ -119,7 +125,7 @@ namespace IttyMod.UIs.Components
 
                 TinyLife.GameImpl.Instance.UiSystem.Style.Font.DrawString(
                     batch,
-                    String.Format("+{0}", bit.reactions[i]),
+                    $"+{bit.reactions[i]}",
                     pos,
                     Color.Black,
                     0,
@@ -131,8 +137,8 @@ namespace IttyMod.UIs.Components
             }
         }
     }
-    
-    class IttyButton : Button {
+
+    internal sealed class IttyButton : Button {
         IttyUI ui;
         public IttyButton(IttyUI ittyUi) : base(
             Anchor.AutoCenter, 
@@ -140,8 +146,9 @@ namespace IttyMod.UIs.Components
             "", 
             "Open Itty"
         ) {
-            var image = new Image(Anchor.Center, new Vec2(14, 14), IttyMod.uiTextures[1, 0], true);
-            image.Padding = new Padding(3, 3);
+            var image = new Image(Anchor.Center, new Vec2(14, 14), IttyMod.uiTextures[1, 0], true) {
+                Padding = new Padding(3, 3)
+            };
             AddChild(image);
 
             // Texture = new NinePatch(IttyMod.uiTextures[1, 0], 6, 6, 2, 2);
@@ -150,22 +157,19 @@ namespace IttyMod.UIs.Components
             this.Padding = new Padding(0, 0);
         }
 
-        public void Callback(Element element) {
-            if(ui.menu != null) {
-                ui.menu.Close();
-                ui.menu = new IttyInterface();
-                ui.root.System.Add("IttyUI", ui.menu);
-            } else {
-                ui.menu = new IttyInterface();
-                ui.root.System.Add("IttyUI", ui.menu);
-            }
+        public void Callback(Element element)
+        {
+            ui.menu?.Close();
+
+            ui.menu = new IttyInterface();
+            ui.root.System.Add("IttyUI", ui.menu);
         }
     }
 
-    class LoadMoreButton : Button {
-        public LoadMoreButton(GenericCallback Callback) : base(Anchor.TopRight, new Vec2(20, 20), "", "") {
+    internal class LoadMoreButton : Button {
+        public LoadMoreButton(GenericCallback callback) : base(Anchor.TopRight, new Vec2(20, 20), "", "") {
             Texture = new NinePatch(IttyMod.uiTextures[2, 2], 6, 6, 2, 2);
-            OnPressed += Callback;
+            OnPressed += callback;
         }
     }
 
@@ -175,30 +179,32 @@ namespace IttyMod.UIs.Components
             Group bitGroup;
             Image icon;
             Button loadMore;
-            Queue<Element> children = new Queue<Element>();
-            Queue<Bit> newBits = new Queue<Bit>();
+            Queue<Element> children = new();
+            Queue<Bit> newBits = new();
 
             public IttyInterface() : base(true, null, true, true) {
                 basePanel = new Panel(Anchor.Center, new Vec2(0.666f, 0.666f), new Vec2(0.166f, 0.166f), false, false);
                 AddChild(basePanel);
 
-                icon = new Image(Anchor.TopLeft, new Vec2(72, 24), IttyMod.uiTextures[1, 0, 3, 1]);
-                icon.Padding = new Padding(2, 2);
+                icon = new Image(Anchor.TopLeft, new Vec2(72, 24), IttyMod.uiTextures[1, 0, 3, 1]) {
+                    Padding = new Padding(2, 2)
+                };
                 basePanel.AddChild(icon);
 
                 // title = new Paragraph(Anchor.TopCenter, 24, "Itty!");
                 // title.TextScaleMultiplier = 2;
                 // basePanel.AddChild(title);
 
-                bitGroup = new Group(Anchor.TopCenter, new Vec2(1, 1), false);
-                bitGroup.ChildPadding = new Padding(5, 5, 24, 5);
+                bitGroup = new Group(Anchor.TopCenter, new Vec2(1, 1), false) {
+                    ChildPadding = new Padding(5, 5, 24, 5)
+                };
                 basePanel.AddChild(bitGroup);
 
                 bitContainer = new Panel(Anchor.AutoCenter, new Vec2(1, 1), new Vec2(0, 0), false, true);
                 bitGroup.AddChild(bitContainer);
 
-                if(BitManager.INSTANCE != null)
-                    foreach(Bit b in BitManager.INSTANCE.Bits) {
+                if(BitManager.Instance != null)
+                    foreach(var b in BitManager.Instance.Bits) {
                         AddBit(b);
                     }
                 BitManager.OnBitPublished += LoadBit;
@@ -227,11 +233,6 @@ namespace IttyMod.UIs.Components
 
                 if(children.Count > 64)
                     bitContainer.RemoveChild(children.Dequeue());
-            }
-
-            public override void Draw(GameTime time, SpriteBatch batch, float alpha, SpriteBatchContext context)
-            {
-                base.Draw(time, batch, alpha, context);
             }
         }
 }
