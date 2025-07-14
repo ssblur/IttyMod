@@ -55,7 +55,7 @@ namespace IttyMod {
         {
             get
             {
-                if (creator?.Map != null) mapNameCache = creator.Map.Info.Name;
+                if (creator?.Map != null) mapNameCache = creator.Map.Info.DisplayName;
                 return mapNameCache ?? "Somewhere";
             }
         }

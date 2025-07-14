@@ -21,7 +21,7 @@ using IttyMod.UIs;
 
 namespace IttyMod {
     public class IttyMod : Mod {
-        public static readonly CanExecuteResult WaitingRequired = new CanExecuteResult("mustwait");
+        private static readonly CanExecuteResult WaitingRequired = new("mustwait");
 
         // the logger that we can use to log info about this mod
         public static Logger Logger { get; private set; }
@@ -30,19 +30,19 @@ namespace IttyMod {
         public override string Name => "Itty";
         public override string Description => "Brings your Tiny Life online!\nThis might be a mistake...";
         public override string IssueTrackerUrl => "https://github.com/ssblur/IttyMod/issues";
-        public override string TestedVersionRange => "[0.47.9,0.47.9]";
+        public override string TestedVersionRange => "[0.47.10,0.47.10]";
         public override string Version => "1.3.0";
 
-        public override TextureRegion Icon => IttyMod.uiTextures[0, 0];
+        public override TextureRegion Icon => UiTextures[0, 0];
         public override bool RequiresHarmony => false;
 
-        public static UniformTextureAtlas uiTextures;
+        public static UniformTextureAtlas UiTextures;
         public static ModInfo Info;
 
-        private static RawContentManager Manager;
-        private static Random Generator;
-        private static string LoadedLang;
-        private static JObject _InternalLang;
+        private static RawContentManager _manager;
+        private static Random _generator;
+        private static string _loadedLang;
+        private static JObject _internalLang;
 
     
 
@@ -50,18 +50,18 @@ namespace IttyMod {
         // Set up this way to notice language changes.
         protected static JObject Lang {
             get {
-                if(LoadedLang == Options.Instance.Language)
-                    return _InternalLang;
-                LoadedLang = Options.Instance.Language;
+                if(_loadedLang == Options.Instance.Language)
+                    return _internalLang;
+                _loadedLang = Options.Instance.Language;
                 
                 try 
                 { 
-                    return _InternalLang = Manager.Load<JObject>("Localization/Itty/" + Options.Instance.Language);
+                    return _internalLang = _manager.Load<JObject>("Localization/Itty/" + Options.Instance.Language);
                 } 
-                catch (ContentLoadException e) when (LoadedLang != "En") // Load English if the existing lang can't be found.
+                catch (ContentLoadException e) when (_loadedLang != "En") // Load English if the existing lang can't be found.
                 {
                     Logger.Error(e);
-                    return _InternalLang = Manager.Load<JObject>("Localization/Itty/En");
+                    return _internalLang = _manager.Load<JObject>("Localization/Itty/En");
                 }
                 catch (ContentLoadException e) { // If English is gone for some reason, don't crash pls.
                     Logger.Error(e);
@@ -82,7 +82,7 @@ namespace IttyMod {
                     CanDoRandomly = true,
                     PassivePriority = p => 40
                 },
-                Texture = uiTextures[1, 0]
+                Texture = UiTextures[1, 0]
             });
 
             // People can just post randomly.
@@ -100,7 +100,7 @@ namespace IttyMod {
                     CanDoRandomly = true,
                     PassivePriority = p => 1
                 },
-                Texture = uiTextures[1, 0]
+                Texture = UiTextures[1, 0]
             });
             
             SaveHandler.OnSaveDataCreated += BitManager.OnSaveDataCreated;
@@ -126,11 +126,11 @@ namespace IttyMod {
 
         public override void Initialize(Logger logger, RawContentManager content, RuntimeTexturePacker texturePacker, ModInfo info) {
             Logger = logger;
-            Manager = content;
+            _manager = content;
             Info = info;
-            Generator = new Random();
+            _generator = new Random();
 
-            texturePacker.Add(content.Load<Texture2D>("UiTextures"), r => IttyMod.uiTextures = new UniformTextureAtlas(r, 8, 8));
+            texturePacker.Add(content.Load<Texture2D>("UiTextures"), r => IttyMod.UiTextures = new UniformTextureAtlas(r, 8, 8));
 
             Tricks.TrickRegistry.Register("test", new Tricks.TestTrick());
             Tricks.TrickRegistry.Register("first", new Tricks.FirstNameTrick());
@@ -164,7 +164,7 @@ namespace IttyMod {
             };
             var array = Lang.SelectToken(key + "." + polarity)?.ToObject<string[]>();
 
-            return array == null ? "honestly at a loss for words..." : array[Generator.Next(0, array.Length)];
+            return array == null ? "honestly at a loss for words..." : array[_generator.Next(0, array.Length)];
 
         }
     }

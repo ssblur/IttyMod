@@ -56,7 +56,7 @@ namespace IttyMod.UIs.Components
                 };
                 leftColumn.AddChild(tag);
             } else {
-                var image = new Image(Anchor.CenterLeft, new Vec2(profileSize, profileSize), IttyMod.uiTextures[0, 0]);
+                var image = new Image(Anchor.CenterLeft, new Vec2(profileSize, profileSize), IttyMod.UiTextures[0, 0]);
                 AddChild(image);
 
                 var tag = new Paragraph(Anchor.AutoLeft, panelSize.X, "Deactivated") {
@@ -94,7 +94,7 @@ namespace IttyMod.UIs.Components
                 if(bit.reactions[i] == 0) continue;
 
                 activeIndex++;
-                var tex = IttyMod.uiTextures[i, 1, 1, 1];
+                var tex = IttyMod.UiTextures[i, 1, 1, 1];
                 var pos = DisplayArea.Location;
                 pos += new Vec2(DisplayArea.Size.X / 2f, this.DisplayArea.Size.Y - 12);
                 pos -= new Vec2(-tex.Width * scale * (activeIndex - 2.5f), tex.Height * scale);
@@ -117,7 +117,7 @@ namespace IttyMod.UIs.Components
                 if(bit.reactions[i] == 0) continue;
 
                 activeIndex++;
-                var tex = IttyMod.uiTextures[i, 1, 1, 1];
+                var tex = IttyMod.UiTextures[i, 1, 1, 1];
                 var pos = this.DisplayArea.Location;
                 pos += new Vec2(this.DisplayArea.Size.X / 2f, this.DisplayArea.Size.Y - 12);
                 pos -= new Vec2(-tex.Width * scale * (activeIndex - 2.5f), tex.Height * scale);
@@ -146,7 +146,7 @@ namespace IttyMod.UIs.Components
             "", 
             "Open Itty"
         ) {
-            var image = new Image(Anchor.Center, new Vec2(14, 14), IttyMod.uiTextures[1, 0], true) {
+            var image = new Image(Anchor.Center, new Vec2(14, 14), IttyMod.UiTextures[1, 0], true) {
                 Padding = new Padding(3, 3)
             };
             AddChild(image);
@@ -168,7 +168,7 @@ namespace IttyMod.UIs.Components
 
     internal class LoadMoreButton : Button {
         public LoadMoreButton(GenericCallback callback) : base(Anchor.TopRight, new Vec2(20, 20), "", "") {
-            Texture = new NinePatch(IttyMod.uiTextures[2, 2], 6, 6, 2, 2);
+            Texture = new NinePatch(IttyMod.UiTextures[2, 2], 6, 6, 2, 2);
             OnPressed += callback;
         }
     }
@@ -186,7 +186,7 @@ namespace IttyMod.UIs.Components
                 basePanel = new Panel(Anchor.Center, new Vec2(0.666f, 0.666f), new Vec2(0.166f, 0.166f), false, false);
                 AddChild(basePanel);
 
-                icon = new Image(Anchor.TopLeft, new Vec2(72, 24), IttyMod.uiTextures[1, 0, 3, 1]) {
+                icon = new Image(Anchor.TopLeft, new Vec2(72, 24), IttyMod.UiTextures[1, 0, 3, 1]) {
                     Padding = new Padding(2, 2)
                 };
                 basePanel.AddChild(icon);
