@@ -1,2 +1,2 @@
 @echo off
-dotnet cake --target=Run
+dotnet cake --target=Run --execute=Steam

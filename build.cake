@@ -3,6 +3,10 @@ using System.Linq;
 using System.Threading;
 
 var target = Argument("target", "Run");
+// Whether to run with the default executable location (Native), steam rungameid (Steam), or a custom location (other)
+var execute = Argument("execute", "Native"); 
+// The location of the Steam executable if running with steam. Not necessary if steam is on the PATH
+var steam = Argument("steam", "steam");
 var config = Argument("configuration", "Release");
 
 var tinyLifeDir = $"{Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData)}/Tiny Life";
@@ -28,9 +32,18 @@ Task("Run").IsDependentOn("CopyToMods").Does(() => {
     var exeDir = $"{tinyLifeDir}/GameDir";
     if (!FileExists(exeDir))
         throw new Exception("Didn't find game directory information. Run the game manually at least once to allow the Run task to be executed.");
-    var exe = $"{System.IO.File.ReadAllText(exeDir)}TinyLife";
+    
+    var exe = execute;
+    var args = "-v --skip-splash --skip-preloads";
+    if(exe == "Steam") {
+        exe = "steam";
+        args = "-applaunch 1651490 " + args;
+    } else if(exe == "Native") {
+        exe = $"{System.IO.File.ReadAllText(exeDir)}TinyLife";
+    }
+
     var process = Process.Start(new ProcessStartInfo(exe) {
-        Arguments = "-v --skip-splash --skip-preloads",
+        Arguments = args,
         CreateNoWindow = true
     });
 
