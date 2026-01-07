@@ -30,7 +30,7 @@ namespace IttyMod {
         public override string Name => "Itty";
         public override string Description => "Brings your Tiny Life online!\nThis might be a mistake...";
         public override string IssueTrackerUrl => "https://github.com/ssblur/IttyMod/issues";
-        public override string TestedVersionRange => "[0.47.10,0.48.0]";
+        public override string TestedVersionRange => "[0.47.10,0.49.0]";
         public override string Version => "1.3.0";
 
         public override TextureRegion Icon => UiTextures[0, 0];
